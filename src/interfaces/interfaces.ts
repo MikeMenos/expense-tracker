@@ -1,12 +1,11 @@
-import {
+import type { icons } from "./../localData/localData";
+import type {
   CSSProperties,
   HTMLInputTypeAttribute,
   ReactElement,
   ReactNode,
+  SyntheticEvent,
 } from "react";
-import { MdDashboard } from "react-icons/md";
-import { GrTransaction } from "react-icons/gr";
-import { FiSettings } from "react-icons/fi";
 
 export type ChildrenType = {
   children: ReactElement | ReactElement[];
@@ -17,7 +16,7 @@ export interface InputInterface {
   className?: string;
   label?: string;
   style?: CSSProperties;
-  onChange?: (a: any) => void;
+  onChange?: (a: SyntheticEvent) => void;
   onBlur?: (e: FocusEvent) => void;
   placeholder?: string;
   value: string | number;
@@ -27,8 +26,8 @@ export interface InputInterface {
   type: HTMLInputTypeAttribute;
   title?: string;
   hidden?: boolean;
-  onKeyUp?: any;
-  onKeyDown?: any;
+  onKeyUp?: KeyboardEvent;
+  onKeyDown?: KeyboardEvent;
   autoFocus?: boolean;
   defaultValue?: string | number;
   autoComplete?: string;
@@ -48,12 +47,6 @@ export interface ButtonInterface {
   icon?: JSX.Element;
   children?: ReactNode;
 }
-
-export const icons = {
-  MdDashboard,
-  GrTransaction,
-  FiSettings,
-};
 
 export type MenuItem = {
   text: string;

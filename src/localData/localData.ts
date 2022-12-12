@@ -1,4 +1,13 @@
-import { MenuItem } from "../interfaces/interfaces";
+import type { MenuItem } from "../interfaces/interfaces";
+import { MdDashboard } from "react-icons/md";
+import { GrTransaction } from "react-icons/gr";
+import { FiSettings } from "react-icons/fi";
+
+export const icons = {
+  MdDashboard,
+  GrTransaction,
+  FiSettings,
+};
 
 export const menuItems: MenuItem[] = [
   {

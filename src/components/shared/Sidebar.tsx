@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import {
   Sidebar as SidebarWrapper,
   Menu,
@@ -13,8 +13,7 @@ import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarRightCollapse,
 } from "react-icons/tb";
-import { menuItems } from "../../localData/localData";
-import { icons } from "../../interfaces/interfaces";
+import { icons, menuItems } from "../../localData/localData";
 import Link from "next/link";
 
 const Sidebar: FC = () => {
@@ -36,9 +35,7 @@ const Sidebar: FC = () => {
         <div className="mt-12">
           <div className="flex flex-col items-center">
             <img
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              src={session?.user?.image}
+              src={session?.user?.image ?? ""}
               alt="Profile Image"
               width={collapsed ? 40 : 80}
               height={collapsed ? 40 : 80}
