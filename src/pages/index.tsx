@@ -13,7 +13,6 @@ const Home: NextPage = () => {
   }, [status]);
 
   if (status === "loading") return <div>Loading...</div>;
-
   if (status === "unauthenticated") return null;
 
   return (

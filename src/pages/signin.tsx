@@ -34,7 +34,6 @@ const SignIn: NextPage = () => {
   };
 
   if (status === "loading") return <div>Loading...</div>;
-
   if (status === "authenticated") return null;
 
   return (

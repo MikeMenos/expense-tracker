@@ -12,9 +12,10 @@ const ForgotPassword = () => {
   useEffect(() => {
     if (status === "authenticated") Router.replace("/");
   }, [status]);
-  if (status === "loading") return <div>Loading...</div>;
 
+  if (status === "loading") return <div>Loading...</div>;
   if (status === "authenticated") return null;
+
   return (
     <>
       <Head>
