@@ -1,8 +1,10 @@
+import type { NextPage } from "next";
 import Layout from "../components/shared/Layout";
-import { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import Router from "next/router";
+import Table from "../components/shared/Table";
+import { transactionColumns } from "../columns/columns";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
@@ -14,9 +16,26 @@ const Transactions: NextPage = () => {
   if (status === "loading") return <div>Loading...</div>;
   if (status === "unauthenticated") return null;
 
+  const sampleData = [
+    {
+      id: "hello",
+      receiver: "jkuukuiku",
+      category: "qwwefweew",
+      amount: 1234,
+      date: "3dfhgfrhrfgthrf",
+    },
+    {
+      id: "hello2",
+      receiver: "defgefdge",
+      category: "dfgdfegferge",
+      amount: 4564565,
+      date: "efdgertghretgh",
+    },
+  ];
+
   return (
     <Layout>
-      <div>HELLO TRANSACTIONS</div>
+      <Table keyField="id" columns={transactionColumns} data={sampleData} />
     </Layout>
   );
 };

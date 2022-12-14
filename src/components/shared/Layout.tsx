@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 import Sidebar from "./Sidebar";
-import { ChildrenType } from "../../interfaces/interfaces";
+import type { ChildrenType } from "../../interfaces/interfaces";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useGetPageTitle } from "../../hooks/useGetPageTitle";

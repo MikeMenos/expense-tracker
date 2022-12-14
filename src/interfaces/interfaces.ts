@@ -6,6 +6,7 @@ import type {
   ReactNode,
   SyntheticEvent,
 } from "react";
+import { BootstrapTableProps } from "react-bootstrap-table-next";
 
 export type ChildrenType = {
   children: ReactElement | ReactElement[];
@@ -53,3 +54,18 @@ export type MenuItem = {
   href: string;
   icon: keyof typeof icons;
 };
+
+export interface TableInterface extends Omit<BootstrapTableProps, "data"> {
+  className?: string;
+  columns: ColumnInterface[];
+  data?: object[] | null;
+}
+
+export interface ColumnInterface {
+  id?: string;
+  text: string;
+  dataField: string;
+  isKey?: boolean;
+  hidden?: boolean;
+  className?: string;
+}

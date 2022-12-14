@@ -1,4 +1,4 @@
-import { FC, SyntheticEvent, useState } from "react";
+import { type FC, type SyntheticEvent, useState } from "react";
 import Form from "../shared/Form";
 import LoginForm from "./LoginForm";
 
@@ -10,8 +10,6 @@ const Login: FC = () => {
     username: "",
     password: "",
   });
-
-  console.log('hello')
 
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name } = e.target as HTMLInputElement;
