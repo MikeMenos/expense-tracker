@@ -11,6 +11,8 @@ const Login: FC = () => {
     password: "",
   });
 
+  console.log('hello')
+
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name } = e.target as HTMLInputElement;
 
