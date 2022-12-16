@@ -1,10 +1,19 @@
-import { FC } from "react";
-import { ButtonInterface } from "../../interfaces/interfaces";
+import type { FC } from "react";
+import type { ButtonInterface } from "../../interfaces/interfaces";
 
-const Button: FC<ButtonInterface> = ({ children, className, onClick }) => {
+const Button: FC<ButtonInterface> = ({
+  children,
+  className,
+  type,
+  icon,
+  onClick,
+}) => {
   return (
-    <button onClick={onClick} className={className}>
-      {children}
+    <button onClick={onClick} className={className} type={type}>
+      <div className="flex">
+        {icon}
+        <span>{children}</span>
+      </div>
     </button>
   );
 };

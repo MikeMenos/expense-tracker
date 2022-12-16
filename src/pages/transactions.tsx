@@ -1,20 +1,13 @@
 import type { NextPage } from "next";
 import Layout from "../components/shared/Layout";
 import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Router from "next/router";
-import Table from "../components/shared/Table";
+import Table from "../components/shared/BootstrapTable/Table";
 import { transactionColumns } from "../columns/columns";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
-
-  useEffect(() => {
-    if (status === "unauthenticated") Router.replace("/signin");
-  }, [status]);
-
-  if (status === "loading") return <div>Loading...</div>;
-  if (status === "unauthenticated") return null;
 
   const sampleData = [
     {
@@ -33,9 +26,30 @@ const Transactions: NextPage = () => {
     },
   ];
 
+  const columns = useMemo(() => transactionColumns, []);
+  const data = useMemo(() => sampleData, []);
+
+  useEffect(() => {
+    if (status === "unauthenticated") Router.replace("/signin");
+  }, [status]);
+
+  if (status === "loading") return <div>Loading...</div>;
+  if (status === "unauthenticated") return null;
+
+  const dummy = () => {
+    console.log("hello");
+  };
+
   return (
     <Layout>
-      <Table keyField="id" columns={transactionColumns} data={sampleData} />
+      <Table
+        columns={columns}
+        data={data}
+        onAdd={dummy}
+        onEdit={dummy}
+        onDelete={dummy}
+        name="transactions-table"
+      />
     </Layout>
   );
 };

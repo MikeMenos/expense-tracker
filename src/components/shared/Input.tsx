@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { InputInterface } from "../../interfaces/interfaces";
+import type { FC } from "react";
+import type { InputInterface } from "../../interfaces/interfaces";
 
 const Input: FC<InputInterface> = ({
   type,
@@ -10,7 +10,6 @@ const Input: FC<InputInterface> = ({
   className,
   style,
   onChange,
-  autoComplete,
 }) => {
   return (
     <>
@@ -23,7 +22,6 @@ const Input: FC<InputInterface> = ({
         onChange={onChange}
         className={className}
         style={style}
-        autoComplete={autoComplete}
       />
     </>
   );

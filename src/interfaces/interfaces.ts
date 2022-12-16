@@ -4,9 +4,9 @@ import type {
   HTMLInputTypeAttribute,
   ReactElement,
   ReactNode,
-  SyntheticEvent,
+  ChangeEvent,
 } from "react";
-import { BootstrapTableProps } from "react-bootstrap-table-next";
+import type { Column, Row } from "react-table";
 
 export type ChildrenType = {
   children: ReactElement | ReactElement[];
@@ -17,36 +17,31 @@ export interface InputInterface {
   className?: string;
   label?: string;
   style?: CSSProperties;
-  onChange?: (a: SyntheticEvent) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent) => void;
   placeholder?: string;
-  value: string | number;
+  value?: string | number;
   disabled?: boolean;
-  name: string;
-  id?: string;
-  type: HTMLInputTypeAttribute;
+  name?: string;
+  type?: HTMLInputTypeAttribute;
   title?: string;
   hidden?: boolean;
   onKeyUp?: KeyboardEvent;
   onKeyDown?: KeyboardEvent;
-  autoFocus?: boolean;
   defaultValue?: string | number;
-  autoComplete?: string;
 }
 
 export interface ButtonInterface {
   disabled?: boolean;
   className?: string;
   loading?: boolean;
-  width?: string;
-  enabled?: boolean;
-  style?: CSSProperties;
   type?: "submit" | "button";
   show?: boolean;
   variant?: "red" | "green";
   onClick?: VoidFunction;
   icon?: JSX.Element;
   children?: ReactNode;
+  onlyIcon?: boolean;
 }
 
 export type MenuItem = {
@@ -55,17 +50,19 @@ export type MenuItem = {
   icon: keyof typeof icons;
 };
 
-export interface TableInterface extends Omit<BootstrapTableProps, "data"> {
-  className?: string;
-  columns: ColumnInterface[];
-  data?: object[] | null;
+export interface TableProps<T extends object> {
+  columns: Column<T>[];
+  data: T[];
+  name: string;
+  onAdd?: () => void;
+  onDelete?: () => void;
+  onEdit?: () => void;
+  onClick?: (row: Row<T>) => void;
 }
 
-export interface ColumnInterface {
-  id?: string;
-  text: string;
-  dataField: string;
-  isKey?: boolean;
-  hidden?: boolean;
-  className?: string;
+export interface TableToolbarProps<T extends Record<string, unknown>> {
+  onAdd?: () => void;
+  onDelete?: () => void;
+  onEdit?: () => void;
+  onClick?: (row: Row<T>) => void;
 }

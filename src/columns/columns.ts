@@ -1,21 +1,21 @@
-import type { ColumnInterface } from "../interfaces/interfaces";
+import type { Column } from "react-table";
 
-export const transactionColumns: ColumnInterface[] = [
-  { text: "Id", dataField: "id", isKey: true, hidden: true },
+export const transactionColumns: Column[] = [
+  { Header: "Id", accessor: "id" },
   {
-    dataField: "receiver",
-    text: "Receiver",
+    accessor: "receiver",
+    Header: "Receiver",
   },
   {
-    dataField: "category",
-    text: "Category",
+    accessor: "category",
+    Header: "Category",
   },
   {
-    dataField: "amount",
-    text: "Amount",
+    accessor: "amount",
+    Header: "Amount",
   },
   {
-    dataField: "date",
-    text: "Date",
+    accessor: "date",
+    Header: "Date",
   },
 ];
