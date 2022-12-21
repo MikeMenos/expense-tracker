@@ -7,9 +7,15 @@ const AddButton: FC<ButtonInterface> = ({
   onlyIcon,
   children = "Add",
   onClick,
+  className,
 }) => {
   return (
-    <Button type={"button"} icon={<GrAdd />} onClick={onClick}>
+    <Button
+      type={"button"}
+      icon={<GrAdd />}
+      onClick={onClick}
+      className={className}
+    >
       {onlyIcon ? "" : children}
     </Button>
   );

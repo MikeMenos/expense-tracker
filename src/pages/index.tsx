@@ -18,7 +18,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
-        <div className="flex w-full flex-col py-10 px-8">
+        <div className="flex flex-col">
           <Input
             value={""}
             name={"search-transaction"}

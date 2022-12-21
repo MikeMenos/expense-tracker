@@ -8,9 +8,9 @@ import {
 } from "react";
 import type { TableInstance } from "react-table";
 import type { TableToolbarProps } from "../../../interfaces/interfaces";
-import AddButton from "./AddButton";
-import DeleteButton from "./DeleteButton";
-import EditButton from "./EditButton";
+import AddButton from "../buttons/AddButton";
+import DeleteButton from "../buttons/DeleteButton";
+import EditButton from "../buttons/EditButton";
 
 export interface Command<T extends Record<string, unknown>> {
   label: string;
@@ -62,8 +62,8 @@ function Toolbar<T extends Record<string, unknown>>({
   // toolbar with add, edit, delete, filter/search column select.
   return (
     <>
-      <div>
-        {onAdd && <AddButton />}
+      <div className="flex items-center gap-4">
+        {onAdd && <AddButton className="text-lg" />}
         {onEdit && <EditButton />}
         {onDelete && <DeleteButton />}
         {/* {extraCommands.map((c) => {

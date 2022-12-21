@@ -14,7 +14,12 @@ const RefreshIcon: FC<ButtonInterface> = ({
   }
 
   return (
-    <Button type={"button"} icon={<GrRefresh />} onClick={onClick}>
+    <Button
+      type={"button"}
+      icon={<GrRefresh />}
+      onClick={onClick}
+      className={className}
+    >
       {children}
     </Button>
   );

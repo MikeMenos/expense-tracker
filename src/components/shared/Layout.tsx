@@ -18,7 +18,7 @@ const Layout: FC<ChildrenType> = ({ children }) => {
       </Head>
       <div className="flex">
         <Sidebar />
-        {children}
+        <div className="flex-grow p-10">{children}</div>
       </div>
     </>
   );

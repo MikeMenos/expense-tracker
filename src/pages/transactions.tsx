@@ -3,8 +3,9 @@ import Layout from "../components/shared/Layout";
 import { useSession } from "next-auth/react";
 import { useEffect, useMemo } from "react";
 import Router from "next/router";
-import Table from "../components/shared/BootstrapTable/Table";
+import Table from "../components/shared/Table/Table";
 import { transactionColumns } from "../columns/columns";
+import TableDrawer from "../components/shared/Table/TableDrawer";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
@@ -42,14 +43,23 @@ const Transactions: NextPage = () => {
 
   return (
     <Layout>
-      <Table
-        columns={columns}
-        data={data}
-        onAdd={dummy}
-        onEdit={dummy}
-        onDelete={dummy}
-        name="transactions-table"
-      />
+      <div className="flex">
+        <Table
+          columns={columns}
+          data={data}
+          onAdd={dummy}
+          onEdit={dummy}
+          onDelete={dummy}
+          name="transactions-table"
+        />
+        <TableDrawer show={true}>
+          <h1>HELLO</h1>
+          <h1>HELLO</h1>
+          <h1>HELLO</h1>
+          <h1>HELLO</h1>
+          <h1>HELLO</h1>
+        </TableDrawer>
+      </div>
     </Layout>
   );
 };

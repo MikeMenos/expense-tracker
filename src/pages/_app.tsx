@@ -3,7 +3,6 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
-import "node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css";
 import { ProSidebarProvider } from "react-pro-sidebar";
 
 const MyApp: AppType<{ session: Session | null }> = ({

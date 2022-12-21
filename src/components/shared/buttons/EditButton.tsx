@@ -7,9 +7,15 @@ const EditButton: FC<ButtonInterface> = ({
   onlyIcon,
   children = "Edit",
   onClick,
+  className,
 }) => {
   return (
-    <Button type={"button"} icon={<AiFillEdit />} onClick={onClick}>
+    <Button
+      type={"button"}
+      icon={<AiFillEdit />}
+      onClick={onClick}
+      className={className}
+    >
       {onlyIcon ? "" : children}
     </Button>
   );

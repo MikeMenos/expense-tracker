@@ -5,6 +5,7 @@ import type {
   ReactElement,
   ReactNode,
   ChangeEvent,
+  SetStateAction,
 } from "react";
 import type { Column, Row } from "react-table";
 
@@ -65,4 +66,14 @@ export interface TableToolbarProps<T extends Record<string, unknown>> {
   onDelete?: () => void;
   onEdit?: () => void;
   onClick?: (row: Row<T>) => void;
+}
+
+export interface ArionDrawerInterface {
+  children?: ReactNode;
+  show: boolean;
+  setShow?: SetStateAction<any>;
+  width?: string;
+  headerTitle?: string;
+  id?: string;
+  onClose?: VoidFunction;
 }

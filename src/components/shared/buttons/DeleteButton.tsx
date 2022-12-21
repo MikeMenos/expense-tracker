@@ -7,9 +7,15 @@ const DeleteButton: FC<ButtonInterface> = ({
   onlyIcon,
   children = "Delete",
   onClick,
+  className,
 }) => {
   return (
-    <Button type={"button"} icon={<AiFillDelete />} onClick={onClick}>
+    <Button
+      type={"button"}
+      icon={<AiFillDelete />}
+      onClick={onClick}
+      className={className}
+    >
       {onlyIcon ? "" : children}
     </Button>
   );

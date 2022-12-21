@@ -7,10 +7,16 @@ const Button: FC<ButtonInterface> = ({
   type,
   icon,
   onClick,
+  disabled,
 }) => {
   return (
-    <button onClick={onClick} className={className} type={type}>
-      <div className="flex">
+    <button
+      onClick={onClick}
+      className={className}
+      type={type}
+      disabled={disabled}
+    >
+      <div className="flex items-center gap-2">
         {icon}
         <span>{children}</span>
       </div>
