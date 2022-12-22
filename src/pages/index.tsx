@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
   if (status === "loading") return <div>Loading...</div>;
   if (status === "unauthenticated") return null;
-
+  console.log(status);
   return (
     <>
       <Layout>

@@ -36,6 +36,8 @@ const SignIn: NextPage = () => {
   if (status === "loading") return <div>Loading...</div>;
   if (status === "authenticated") return null;
 
+  console.log(status);
+
   return (
     <>
       <Head>
@@ -47,7 +49,7 @@ const SignIn: NextPage = () => {
         <div className="h-screen w-1/2 bg-teal-200">LEFT SIDE</div>
         <div className="flex w-1/2 flex-col items-center justify-center">
           <Login />
-          <Link href="/src/pages/forgot-password" className="w-full">
+          <Link href="/forgot-password" className="w-full">
             <p className="mt-2 px-28 text-right text-sm opacity-60">
               Forgot password?
             </p>
@@ -55,8 +57,8 @@ const SignIn: NextPage = () => {
           <Button
             className="mt-16 flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
             onClick={() => signIn("discord")}
+            icon={<BsDiscord size={"1.5em"} />}
           >
-            <BsDiscord size={"1.5em"} />
             Sign In with Discord
           </Button>{" "}
         </div>

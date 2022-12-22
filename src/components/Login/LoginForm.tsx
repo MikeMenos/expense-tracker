@@ -21,7 +21,6 @@ const LoginForm: FC<PropsInterface> = ({
         value={username}
         onChange={onInputChange}
         className="border-b p-2 outline-none"
-        autoComplete={"off"}
       />
       <Input
         type="password"
@@ -30,7 +29,6 @@ const LoginForm: FC<PropsInterface> = ({
         value={password}
         onChange={onInputChange}
         className="border-b p-2 outline-none"
-        autoComplete={"off"}
       />
     </div>
   );
