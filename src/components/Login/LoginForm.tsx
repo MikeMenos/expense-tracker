@@ -1,5 +1,5 @@
 import Input from "../shared/Input";
-import { FC, SyntheticEvent } from "react";
+import { type FC, type SyntheticEvent } from "react";
 
 interface PropsInterface {
   username: string;

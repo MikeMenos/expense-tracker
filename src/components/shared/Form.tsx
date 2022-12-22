@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { ChildrenType } from "../../interfaces/interfaces";
+import { type FC, type SyntheticEvent } from "react";
+import { type ChildrenType } from "../../interfaces/interfaces";
 
 interface PropsInterface extends ChildrenType {
   className?: string;
-  onSubmit: VoidFunction;
+  onSubmit: (e: SyntheticEvent) => void;
 }
 
 const Form: FC<PropsInterface> = ({ children, className, onSubmit }) => {

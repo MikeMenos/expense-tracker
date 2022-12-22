@@ -1,35 +1,23 @@
 import type { NextPage } from "next";
+import { useEffect, useMemo, useState } from "react";
 import Layout from "../components/shared/Layout";
 import { useSession } from "next-auth/react";
-import { useEffect, useMemo, useState } from "react";
 import Router from "next/router";
 import Table from "../components/shared/Table/Table";
-import { transactionColumns } from "../columns/columns";
+import { categoryColumns } from "../columns/columns";
 import TableDrawer from "../components/shared/Table/TableDrawer";
+import ExpenseCategoriesForm from "../components/ExpenseCategories/ExpenseCategoriesForm";
+import { trpc } from "../utils/trpc";
 
-const Transactions: NextPage = () => {
+const Categories: NextPage = () => {
   const { status } = useSession();
   const [show, setShow] = useState<boolean>(false);
 
-  const sampleData = [
-    {
-      id: "hello",
-      receiver: "jkuukuiku",
-      category: "qwwefweew",
-      amount: 1234,
-      date: "3dfhgfrhrfgthrf",
-    },
-    {
-      id: "hello2",
-      receiver: "defgefdge",
-      category: "dfgdfegferge",
-      amount: 4564565,
-      date: "efdgertghretgh",
-    },
-  ];
+  const { data, isFetching } = trpc.category.list.useQuery();
 
-  const columns = useMemo(() => transactionColumns, []);
-  const data = useMemo(() => sampleData, []);
+  const categories = data?.categories.flatMap((category) => category) ?? [];
+
+  const columns = useMemo(() => categoryColumns, []);
 
   useEffect(() => {
     if (status === "unauthenticated") Router.replace("/signin");
@@ -46,23 +34,25 @@ const Transactions: NextPage = () => {
     setShow(false);
   };
 
+  if (isFetching) return <h1>Loading...</h1>;
+
   return (
     <Layout>
       <div className="flex">
         <Table
           columns={columns}
-          data={data}
+          data={categories ?? []}
           onAdd={onAdd}
           // onEdit={dummy}
           // onDelete={dummy}
-          name="transactions-table"
+          name="categories-table"
         />
         <TableDrawer show={show} style={{ width: "50%" }} onClose={onClose}>
-          <h1>hello</h1>
+          <ExpenseCategoriesForm setShow={setShow} />
         </TableDrawer>
       </div>
     </Layout>
   );
 };
 
-export default Transactions;
+export default Categories;

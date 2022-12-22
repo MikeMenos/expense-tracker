@@ -19,3 +19,11 @@ export const transactionColumns: Column[] = [
     Header: "Date",
   },
 ];
+
+export const categoryColumns: Column[] = [
+  { Header: "Id", accessor: "id" },
+  {
+    accessor: "category",
+    Header: "Name",
+  },
+];

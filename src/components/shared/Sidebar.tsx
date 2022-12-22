@@ -30,7 +30,7 @@ const Sidebar: FC = () => {
             justifyContent: "space-between",
           },
         }}
-        width="200px"
+        width="250px"
       >
         <div className="mt-12">
           <div className="flex flex-col items-center">
