@@ -1,14 +1,17 @@
 import type { NextPage } from "next";
 import Layout from "../components/shared/Layout";
 import { useSession } from "next-auth/react";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Router from "next/router";
 import Table from "../components/shared/Table/Table";
 import { transactionColumns } from "../columns/columns";
 import TableDrawer from "../components/shared/Table/TableDrawer";
+import Button from "../components/shared/Button";
+import { GrClose } from "react-icons/gr";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
+  const [show, setShow] = useState<boolean>(false);
 
   const sampleData = [
     {
@@ -37,8 +40,12 @@ const Transactions: NextPage = () => {
   if (status === "loading") return <div>Loading...</div>;
   if (status === "unauthenticated") return null;
 
-  const dummy = () => {
-    console.log("hello");
+  const onAdd = () => {
+    setShow(true);
+  };
+
+  const onClose = () => {
+    setShow(false);
   };
 
   return (
@@ -47,17 +54,13 @@ const Transactions: NextPage = () => {
         <Table
           columns={columns}
           data={data}
-          onAdd={dummy}
-          onEdit={dummy}
-          onDelete={dummy}
+          onAdd={onAdd}
+          // onEdit={dummy}
+          // onDelete={dummy}
           name="transactions-table"
         />
-        <TableDrawer show={true}>
-          <h1>HELLO</h1>
-          <h1>HELLO</h1>
-          <h1>HELLO</h1>
-          <h1>HELLO</h1>
-          <h1>HELLO</h1>
+        <TableDrawer show={show} style={{ width: "50%" }} onClose={onClose}>
+          <h1>hello</h1>
         </TableDrawer>
       </div>
     </Layout>

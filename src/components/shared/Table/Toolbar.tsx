@@ -63,7 +63,7 @@ function Toolbar<T extends Record<string, unknown>>({
   return (
     <>
       <div className="flex items-center gap-4">
-        {onAdd && <AddButton className="text-lg" />}
+        {onAdd && <AddButton className="text-lg" onClick={onAdd} />}
         {onEdit && <EditButton />}
         {onDelete && <DeleteButton />}
         {/* {extraCommands.map((c) => {

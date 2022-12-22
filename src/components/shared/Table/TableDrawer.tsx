@@ -1,41 +1,26 @@
 import { type FC } from "react";
-import Drawer from "rc-drawer";
+import Drawer from "react-modern-drawer";
 import type { ArionDrawerInterface } from "../../../interfaces/interfaces";
-import { type IDrawerProps } from "rc-drawer/es/IDrawerPropTypes";
+import Button from "../Button";
+import { GrClose } from "react-icons/gr";
 
-const TableDrawer: FC<ArionDrawerInterface & IDrawerProps> = (props) => {
-  const {
-    children,
-    show,
-    setShow,
-    onClose,
-    width = "600px",
-    afterVisibleChange,
-    className,
-  } = props;
-
-  const handleMaskClick = () => {
-    setShow(false);
-  };
+const TableDrawer: FC<ArionDrawerInterface> = (props) => {
+  const { children, show, onClose, className, style } = props;
 
   return (
-    <div className="h-screen bg-red-500">
-      <Drawer
-        ease={"cubic-bezier(0.78, 0.14, 0.15, 0.86)"}
-        afterVisibleChange={afterVisibleChange}
-        duration={".3s"}
-        level={null}
-        placement="right"
-        handler={false}
-        onClose={onClose ?? handleMaskClick}
-        showMask={false}
-        width={width}
-        open={show}
-        className={className}
-      >
-        {children}
-      </Drawer>
-    </div>
+    <Drawer
+      direction="right"
+      onClose={onClose}
+      open={show}
+      className={className}
+      style={style}
+    >
+      <Button
+        icon={<GrClose size="1.5rem" className="font-bold" onClick={onClose} />}
+        className="absolute top-3 left-3"
+      />
+      {children}
+    </Drawer>
   );
 };
 
