@@ -76,4 +76,6 @@ export interface ArionDrawerInterface {
   headerTitle?: string;
   id?: string;
   onClose?: VoidFunction;
+  className?: string;
+  style?: CSSProperties;
 }

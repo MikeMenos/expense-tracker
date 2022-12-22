@@ -3,6 +3,7 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
+import "react-modern-drawer/dist/index.css";
 import { ProSidebarProvider } from "react-pro-sidebar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
