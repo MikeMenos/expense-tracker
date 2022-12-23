@@ -19,14 +19,7 @@ const Home: NextPage = () => {
     <>
       <Layout>
         <div className="flex flex-col">
-          <Input
-            value={""}
-            name={"search-transaction"}
-            type="text"
-            placeholder="Search Transaction..."
-            className="mb-8 mr-0 ml-auto w-1/5 rounded-md border-2 p-2 outline-none"
-          />
-
+          <h1 className="mb-4">Welcome to your Dashboard!</h1>
           <div className="flex flex-grow">
             <div className="w-1/2 bg-red-500">Overview</div>
             <div className="w-1/2 bg-blue-500">

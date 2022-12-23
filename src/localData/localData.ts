@@ -1,12 +1,12 @@
 import type { MenuItem } from "../interfaces/interfaces";
 import { MdDashboard } from "react-icons/md";
-import { GrTransaction } from "react-icons/gr";
+import { RiExchangeBoxLine } from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
 import { MdCategory } from "react-icons/md";
 
 export const icons = {
   MdDashboard,
-  GrTransaction,
+  RiExchangeBoxLine,
   FiSettings,
   MdCategory,
 };
@@ -20,10 +20,10 @@ export const menuItems: MenuItem[] = [
   {
     text: "Transactions",
     href: "/transactions",
-    icon: "GrTransaction",
+    icon: "RiExchangeBoxLine",
   },
   {
-    text: "Expense Categories",
+    text: "Categories",
     href: "/categories",
     icon: "MdCategory",
   },

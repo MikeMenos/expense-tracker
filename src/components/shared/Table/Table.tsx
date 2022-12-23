@@ -1,7 +1,6 @@
 import { type ReactElement, useState, type ChangeEvent } from "react";
 import { useTable, useGlobalFilter } from "react-table";
 import type { TableProps } from "../../../interfaces/interfaces";
-import Input from "../Input";
 import ToolBar from "./Toolbar";
 
 function Table<T extends object>({
@@ -30,18 +29,23 @@ function Table<T extends object>({
 
   return (
     <div className="flex flex-grow flex-col">
-      <ToolBar {...{ onAdd }} />
-      <Input
-        placeholder="Filter"
-        onChange={handleFilterInputChange}
-        value={globalFilter}
-      />
-      <table {...getTableProps()}>
+      <ToolBar {...{ onAdd, globalFilter, handleFilterInputChange }} />
+      <table {...getTableProps({ className: "mt-8" })}>
         <thead>
           {headerGroups.map((headerGroup, i) => (
-            <tr {...headerGroup.getHeaderGroupProps()} key={i}>
+            <tr
+              {...headerGroup.getHeaderGroupProps({
+                className: "bg-purple",
+              })}
+              key={i}
+            >
               {headerGroup.headers.map((column, x) => (
-                <th {...column.getHeaderProps()} key={x}>
+                <th
+                  {...column.getHeaderProps({
+                    style: { padding: "1rem 0 1rem 0" },
+                  })}
+                  key={x}
+                >
                   {column.render("Header")}
                   {/* Render the columns filter UI */}
                 </th>
@@ -56,7 +60,15 @@ function Table<T extends object>({
               <tr {...row.getRowProps()} key={i}>
                 {row.cells.map((cell, x) => {
                   return (
-                    <td {...cell.getCellProps()} key={x}>
+                    <td
+                      {...cell.getCellProps({
+                        style: {
+                          textAlign: "center",
+                          padding: "1rem 0 1rem 0",
+                        },
+                      })}
+                      key={x}
+                    >
                       {cell.render("Cell")}
                     </td>
                   );

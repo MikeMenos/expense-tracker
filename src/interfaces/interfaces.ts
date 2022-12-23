@@ -59,13 +59,14 @@ export interface TableProps<T extends object> {
   onDelete?: () => void;
   onEdit?: () => void;
   onClick?: (row: Row<T>) => void;
+  style?: CSSProperties;
 }
 
 export interface TableToolbarProps<T extends Record<string, unknown>> {
   onAdd?: () => void;
-  onDelete?: () => void;
-  onEdit?: () => void;
   onClick?: (row: Row<T>) => void;
+  globalFilter?: string;
+  handleFilterInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ArionDrawerInterface {

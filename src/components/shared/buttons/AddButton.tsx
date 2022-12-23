@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { GrAdd } from "react-icons/gr";
+import { IoMdAddCircleOutline } from "react-icons/io";
 import type { ButtonInterface } from "../../../interfaces/interfaces";
 import Button from "../Button";
 
@@ -12,7 +12,7 @@ const AddButton: FC<ButtonInterface> = ({
   return (
     <Button
       type={"button"}
-      icon={<GrAdd />}
+      icon={<IoMdAddCircleOutline size="1.5rem" />}
       onClick={onClick}
       className={className}
     >

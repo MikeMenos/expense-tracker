@@ -15,19 +15,30 @@ import {
 } from "react-icons/tb";
 import { icons, menuItems } from "../../localData/localData";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useGetPageTitle } from "../../hooks/useGetPageTitle";
 
 const Sidebar: FC = () => {
   const { collapseSidebar, collapsed } = useProSidebar();
   const { data: session } = useSession();
+  const router = useRouter();
+  const { title } = useGetPageTitle(router.pathname);
 
+  const getActive = (menuText: string) => {
+    if (title === menuText) return true;
+    if (title === menuText) return true;
+    if (title === menuText) return true;
+    if (title === menuText) return true;
+  };
   return (
-    <div className="relative flex h-[100vh]">
+    <div className="relative flex h-[100vh] ">
       <SidebarWrapper
         rootStyles={{
           [`.${sidebarClasses.container}`]: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            backgroundColor: "#192439",
           },
         }}
         width="250px"
@@ -53,8 +64,9 @@ const Sidebar: FC = () => {
               return (
                 <MenuItem
                   key={item.text}
-                  icon={<Icon size="1.2em" />}
+                  icon={<Icon size="1.5em" />}
                   routerLink={<Link href={item.href} />}
+                  active={getActive(item.text)}
                 >
                   {item.text}
                 </MenuItem>
@@ -68,8 +80,12 @@ const Sidebar: FC = () => {
           }}
         >
           <hr className="mx-3.5" />
-          <MenuItem icon={<BiLogOut size="1.5rem" />} onClick={() => signOut()}>
-            <span className="font-semibold">Sign Out</span>
+          <MenuItem
+            className="sign-out"
+            icon={<BiLogOut size="1.5rem" />}
+            onClick={() => signOut()}
+          >
+            <span>Sign Out</span>
           </MenuItem>
         </Menu>
       </SidebarWrapper>

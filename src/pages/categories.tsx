@@ -8,9 +8,9 @@ import TableDrawer from "../components/shared/Table/TableDrawer";
 import ExpenseCategoriesForm from "../components/ExpenseCategories/ExpenseCategoriesForm";
 import { trpc } from "../utils/trpc";
 import type { Column, Row } from "react-table";
-import Button from "../components/shared/Button";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { useQueryClient } from "@tanstack/react-query";
+import DeleteButton from "../components/shared/buttons/DeleteButton";
+import EditButton from "../components/shared/buttons/EditButton";
 
 const Categories: NextPage = () => {
   const { status } = useSession();
@@ -59,23 +59,17 @@ const Categories: NextPage = () => {
       Header: "Name",
     },
     {
-      Header: "Delete",
-      accessor: "delete",
+      Header: "Actions",
+      accessor: "actions",
       Cell: ({ row }) => (
-        <Button
-          onClick={() => onDelete(row)}
-          icon={<AiFillDelete size="1.5rem" color="red" />}
-        />
-      ),
-    },
-    {
-      Header: "Edit",
-      accessor: "edit",
-      Cell: ({ row }) => (
-        <Button
-          onClick={() => onEdit(row)}
-          icon={<AiFillEdit size="1.5rem" />}
-        />
+        <>
+          <EditButton onClick={() => onEdit(row)} onlyIcon className="mr-3" />
+          <DeleteButton
+            onClick={() => onDelete(row)}
+            onlyIcon
+            className="ml-3"
+          />
+        </>
       ),
     },
   ];
@@ -85,11 +79,20 @@ const Categories: NextPage = () => {
   if (status === "loading") return <div>Loading...</div>;
   if (status === "unauthenticated") return null;
 
-  if (isFetching) return <h1>Loading...</h1>;
+  if (isFetching)
+    return (
+      <Layout>
+        <h1>Loading...</h1>
+      </Layout>
+    );
 
   return (
     <Layout>
-      <div className="flex">
+      <div className="flex flex-col">
+        <h1 className="mb-4">Categories</h1>
+        <h3 className="mb-10 font-semibold text-purple">
+          Manage your expense categories
+        </h3>
         <Table
           columns={columns}
           data={categories}
