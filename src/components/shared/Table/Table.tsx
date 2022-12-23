@@ -9,8 +9,6 @@ function Table<T extends object>({
   data,
   name,
   onAdd,
-  onDelete,
-  onEdit,
 }: TableProps<T>): ReactElement {
   const [globalFilter, setGlobalFilter] = useState("");
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
@@ -18,6 +16,9 @@ function Table<T extends object>({
       {
         columns,
         data,
+        initialState: {
+          hiddenColumns: ["id"],
+        },
       },
       useGlobalFilter
     );
@@ -29,7 +30,7 @@ function Table<T extends object>({
 
   return (
     <div className="flex flex-grow flex-col">
-      <ToolBar {...{ onAdd, onDelete, onEdit }} />
+      <ToolBar {...{ onAdd }} />
       <Input
         placeholder="Filter"
         onChange={handleFilterInputChange}

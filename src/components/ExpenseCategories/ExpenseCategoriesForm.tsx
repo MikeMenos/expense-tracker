@@ -1,46 +1,53 @@
 import {
   type SyntheticEvent,
-  useState,
   type FC,
   type SetStateAction,
   type Dispatch,
 } from "react";
 import { trpc } from "../../utils/trpc";
-import { categorySchema } from "../../zodSchemas/categorySchema";
 import Form from "../shared/Form";
 import Input from "../shared/Input";
+import { type QueryClient } from "@tanstack/react-query";
+import { type Row } from "react-table";
 
 interface PropsInterface {
   setShow: Dispatch<SetStateAction<boolean>>;
+  queryClient: QueryClient;
+  record: Row["original"];
+  setRecord: Dispatch<SetStateAction<object>>;
 }
 
-const ExpenseCategoriesForm: FC<PropsInterface> = ({ setShow }) => {
-  const [category, setCategory] = useState<string>("");
-  const utils = trpc.useContext();
+const ExpenseCategoriesForm: FC<PropsInterface> = ({
+  setShow,
+  queryClient,
+  record,
+  setRecord,
+}) => {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const { category, id = "" } = record;
 
   const onInputChange = (e: SyntheticEvent) => {
-    const { value } = e.target as HTMLInputElement;
-    setCategory(value);
+    const { value, name } = e.target as HTMLInputElement;
+    setRecord((state) => ({
+      ...state,
+      [name]: value,
+    }));
   };
 
-  const { mutateAsync } = trpc.category.create.useMutation({
+  const { mutateAsync } = trpc.category.createOrEdit.useMutation({
     onSuccess: () => {
-      setCategory("");
+      setRecord({});
       setShow(false);
-      utils.category.list.invalidate();
+      void queryClient.refetchQueries();
     },
   });
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-
-    try {
-      categorySchema.parse({ category });
-    } catch (e: unknown) {
-      return;
-    }
-
-    mutateAsync({ category });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mutateAsync({ category, id });
   };
   return (
     <Form
@@ -49,10 +56,13 @@ const ExpenseCategoriesForm: FC<PropsInterface> = ({ setShow }) => {
     >
       <Input
         placeholder="Category..."
-        value={category}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        value={record?.category}
         type="text"
         onChange={onInputChange}
         className="border-b p-2 outline-none"
+        name="category"
       />
       <button>Submit</button>
     </Form>
