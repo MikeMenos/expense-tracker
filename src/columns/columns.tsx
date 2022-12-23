@@ -1,4 +1,6 @@
 import type { Column } from "react-table";
+import Button from "../components/shared/Button";
+import { AiFillDelete } from "react-icons/ai";
 
 export const transactionColumns: Column[] = [
   { Header: "Id", accessor: "id" },
@@ -18,12 +20,11 @@ export const transactionColumns: Column[] = [
     accessor: "date",
     Header: "Date",
   },
-];
-
-export const categoryColumns: Column[] = [
-  { Header: "Id", accessor: "id" },
   {
-    accessor: "category",
-    Header: "Name",
+    Header: "Delete",
+    accessor: () => "delete",
+    Cell: (tableProps) => (
+      <Button icon={<AiFillDelete size="1.5rem" color="red" />} />
+    ),
   },
 ];

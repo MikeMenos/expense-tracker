@@ -5,19 +5,32 @@ import { trpc } from "../utils/trpc";
 import "../styles/globals.css";
 import "react-modern-drawer/dist/index.css";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
+
   return (
-    <SessionProvider session={session}>
-      <ProSidebarProvider>
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </ProSidebarProvider>
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider session={session}>
+        <ProSidebarProvider>
+          <main>
+            <Component {...pageProps} />
+          </main>
+        </ProSidebarProvider>
+      </SessionProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
 

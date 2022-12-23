@@ -1,17 +1,18 @@
 import { categorySchema } from "../../../zodSchemas/categorySchema";
 import { router, protectedProcedure } from "../trpc";
+import { z } from "zod";
 
 export const categoryRouter = router({
-  create: protectedProcedure
+  createOrEdit: protectedProcedure
     .input(categorySchema)
     .mutation(({ ctx, input }) => {
       const { prisma } = ctx;
-      const { category } = input;
+      const { category, id } = input;
 
-      return prisma.category.create({
-        data: {
-          category,
-        },
+      return prisma.category.upsert({
+        where: { id },
+        update: { category },
+        create: { category },
       });
     }),
 
@@ -21,4 +22,20 @@ export const categoryRouter = router({
 
     return { categories };
   }),
+
+  remove: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { prisma } = ctx;
+
+      return prisma.category.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
 });

@@ -26,8 +26,6 @@ export interface TableMouseEventHandler<T extends Record<string, unknown>> {
 
 function Toolbar<T extends Record<string, unknown>>({
   onAdd,
-  onDelete,
-  onEdit,
 }: PropsWithChildren<TableToolbarProps<T>>): ReactElement | null {
   // const { columns } = instance;
   const [anchorEl, setAnchorEl] = useState<Element | undefined>(undefined);
@@ -64,8 +62,6 @@ function Toolbar<T extends Record<string, unknown>>({
     <>
       <div className="flex items-center gap-4">
         {onAdd && <AddButton className="text-lg" onClick={onAdd} />}
-        {onEdit && <EditButton />}
-        {onDelete && <DeleteButton />}
         {/* {extraCommands.map((c) => {
           const { type = "icon" } = c;
           return type === "icon" ? (
