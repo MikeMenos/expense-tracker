@@ -11,6 +11,7 @@ import type { Column, Row } from "react-table";
 import { useQueryClient } from "@tanstack/react-query";
 import DeleteButton from "../components/shared/buttons/DeleteButton";
 import EditButton from "../components/shared/buttons/EditButton";
+import { errorToast, successToast } from "../components/shared/toast/toasts";
 
 const Categories: NextPage = () => {
   const { status } = useSession();
@@ -26,11 +27,27 @@ const Categories: NextPage = () => {
     if (status === "unauthenticated") void Router.replace("/signin");
   }, [status]);
 
-  const removeCategory = trpc.category.remove.useMutation({
+  const { mutate: remove } = trpc.category.delete.useMutation({
     onSuccess: () => {
       void queryClient.refetchQueries();
     },
-  }).mutateAsync;
+  });
+
+  const { mutate: createOrEdit } = trpc.category.createOrEdit.useMutation({
+    onSuccess: () => {
+      queryClient.invalidateQueries().then(() => {
+        successToast("Category was created successfully!");
+        onClose();
+      });
+    },
+    onError: ({ message }) => {
+      errorToast(
+        JSON.parse(message)
+          .map(({ message }: { message: string }) => message)
+          .toString()
+      );
+    },
+  });
 
   const onAdd = () => {
     setShow(true);
@@ -44,7 +61,7 @@ const Categories: NextPage = () => {
   const onDelete = (row: Row) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    void removeCategory({ id: row.original.id });
+    void remove({ id: row.original.id });
   };
 
   const onClose = () => {
@@ -103,8 +120,7 @@ const Categories: NextPage = () => {
           <ExpenseCategoriesForm
             record={record}
             setRecord={setRecord}
-            setShow={setShow}
-            queryClient={queryClient}
+            createOrEdit={createOrEdit}
           />
         </TableDrawer>
       </div>

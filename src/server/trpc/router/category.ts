@@ -23,7 +23,7 @@ export const categoryRouter = router({
     return { categories };
   }),
 
-  remove: protectedProcedure
+  delete: protectedProcedure
     .input(
       z.object({
         id: z.string(),

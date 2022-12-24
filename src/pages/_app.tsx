@@ -7,6 +7,7 @@ import "react-modern-drawer/dist/index.css";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -26,6 +27,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <ProSidebarProvider>
           <main>
             <Component {...pageProps} />
+            <Toaster />
           </main>
         </ProSidebarProvider>
       </SessionProvider>
