@@ -5,13 +5,14 @@ import { useSession } from "next-auth/react";
 import Router from "next/router";
 import Table from "../components/shared/Table/Table";
 import TableDrawer from "../components/shared/Table/TableDrawer";
-import ExpenseCategoriesForm from "../components/ExpenseCategories/ExpenseCategoriesForm";
 import { trpc } from "../utils/trpc";
 import type { Column, Row } from "react-table";
 import { useQueryClient } from "@tanstack/react-query";
 import DeleteButton from "../components/shared/buttons/DeleteButton";
 import EditButton from "../components/shared/buttons/EditButton";
 import { errorToast, successToast } from "../components/shared/toast/toasts";
+import Loader from "../components/shared/Loader";
+import CategoriesForm from "../components/Categories/CategoriesForm";
 
 const Categories: NextPage = () => {
   const { status } = useSession();
@@ -28,17 +29,23 @@ const Categories: NextPage = () => {
   }, [status]);
 
   const { mutate: remove } = trpc.category.delete.useMutation({
-    onSuccess: () => {
-      void queryClient.refetchQueries();
+    onSuccess: ({ category }) => {
+      void queryClient.invalidateQueries().then(() => {
+        successToast(`${category} was deleted successfully!`);
+      });
+    },
+    onError: () => {
+      errorToast("Oops, something went wrong!");
     },
   });
 
   const { mutate: createOrEdit } = trpc.category.createOrEdit.useMutation({
-    onSuccess: () => {
-      queryClient.invalidateQueries().then(() => {
-        successToast("Category was created successfully!");
-        onClose();
-      });
+    onSuccess: ({ id }) => {
+      successToast(
+        `Category was ${id !== "" ? "updated" : "added"} successfully!`
+      );
+      onClose();
+      queryClient.invalidateQueries();
     },
     onError: ({ message }) => {
       errorToast(
@@ -61,6 +68,7 @@ const Categories: NextPage = () => {
   const onDelete = (row: Row) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
+    // modalToast(remove);
     void remove({ id: row.original.id });
   };
 
@@ -93,13 +101,18 @@ const Categories: NextPage = () => {
 
   const columns = useMemo(() => categoryColumns, []);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading")
+    return (
+      <div className="flex h-screen w-full justify-center bg-main">
+        <Loader />
+      </div>
+    );
   if (status === "unauthenticated") return null;
 
   if (isFetching)
     return (
       <Layout>
-        <h1>Loading...</h1>
+        <Loader />
       </Layout>
     );
 
@@ -116,8 +129,8 @@ const Categories: NextPage = () => {
           onAdd={onAdd}
           name="categories-table"
         />
-        <TableDrawer show={show} style={{ width: "50%" }} onClose={onClose}>
-          <ExpenseCategoriesForm
+        <TableDrawer show={show} onClose={onClose}>
+          <CategoriesForm
             record={record}
             setRecord={setRecord}
             createOrEdit={createOrEdit}

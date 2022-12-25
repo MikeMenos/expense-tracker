@@ -3,6 +3,7 @@ import Router, { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { useGetPageTitle } from "../hooks/useGetPageTitle";
+import Loader from "../components/shared/Loader";
 
 const ForgotPassword = () => {
   const { status } = useSession();
@@ -13,7 +14,12 @@ const ForgotPassword = () => {
     if (status === "authenticated") Router.replace("/");
   }, [status]);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading")
+    return (
+      <div className="flex h-screen w-full justify-center bg-main">
+        <Loader />
+      </div>
+    );
   if (status === "authenticated") return null;
 
   return (

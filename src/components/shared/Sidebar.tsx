@@ -6,7 +6,7 @@ import {
   useProSidebar,
   sidebarClasses,
 } from "react-pro-sidebar";
-import Button from "./Button";
+import Button from "./buttons/Button";
 import { signOut, useSession } from "next-auth/react";
 import { BiLogOut } from "react-icons/bi";
 import {

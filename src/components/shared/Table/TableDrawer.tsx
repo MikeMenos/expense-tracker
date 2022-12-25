@@ -1,8 +1,8 @@
 import { type FC } from "react";
 import Drawer from "react-modern-drawer";
 import type { ArionDrawerInterface } from "../../../interfaces/interfaces";
-import Button from "../Button";
-import { GrClose } from "react-icons/gr";
+import Button from "../buttons/Button";
+import { AiOutlineClose } from "react-icons/ai";
 
 const TableDrawer: FC<ArionDrawerInterface> = (props) => {
   const { children, show, onClose, className, style } = props;
@@ -13,10 +13,17 @@ const TableDrawer: FC<ArionDrawerInterface> = (props) => {
       onClose={onClose}
       open={show}
       className={className}
-      style={style}
+      style={{ ...style, width: "30%" }}
     >
       <Button
-        icon={<GrClose size="1.5rem" className="font-bold" onClick={onClose} />}
+        icon={
+          <AiOutlineClose
+            color="white"
+            size="1.6rem"
+            className="font-bold"
+            onClick={onClose}
+          />
+        }
         className="absolute top-3 left-3"
       />
       {children}

@@ -30,6 +30,7 @@ export interface InputInterface {
   onKeyUp?: KeyboardEvent;
   onKeyDown?: KeyboardEvent;
   defaultValue?: string | number;
+  icon?: JSX.Element;
 }
 
 export interface ButtonInterface {
@@ -43,6 +44,7 @@ export interface ButtonInterface {
   icon?: JSX.Element;
   children?: ReactNode;
   onlyIcon?: boolean;
+  onlyText?: boolean;
 }
 
 export type MenuItem = {
@@ -56,8 +58,6 @@ export interface TableProps<T extends object> {
   data: T[];
   name: string;
   onAdd?: () => void;
-  onDelete?: () => void;
-  onEdit?: () => void;
   onClick?: (row: Row<T>) => void;
   style?: CSSProperties;
 }
@@ -66,7 +66,7 @@ export interface TableToolbarProps<T extends Record<string, unknown>> {
   onAdd?: () => void;
   onClick?: (row: Row<T>) => void;
   globalFilter?: string;
-  handleFilterInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleFilterInputChange?: (arg0: string) => void;
 }
 
 export interface ArionDrawerInterface {

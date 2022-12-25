@@ -6,7 +6,8 @@ import type { InputInterface } from "../../interfaces/interfaces";
 
 interface PropsInterface extends InputInterface {
   delay?: number;
-  onSearch: (arg0: number | string) => void;
+  onSearch: (arg0: string) => void;
+  className: string;
 }
 
 const SearchInput: FC<PropsInterface> = ({
@@ -14,6 +15,7 @@ const SearchInput: FC<PropsInterface> = ({
   label,
   delay = 500,
   placeholder = " ",
+  className,
 }) => {
   const debouncedFunc = useMemo(() => _.debounce(onSearch, delay), [delay]);
 
@@ -23,9 +25,14 @@ const SearchInput: FC<PropsInterface> = ({
   };
 
   return (
-    <div className="flex">
-      <BiSearch />
-      <Input placeholder={placeholder} label={label} onChange={onChange} />
+    <div className="flex items-center">
+      <Input
+        placeholder={placeholder}
+        label={label}
+        onChange={onChange}
+        className={className}
+        icon={<BiSearch size="1.1rem" />}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import type { ButtonInterface } from "../../../interfaces/interfaces";
-import Button from "../Button";
+import Button from "./Button";
 
 const DeleteButton: FC<ButtonInterface> = ({
   onlyIcon,

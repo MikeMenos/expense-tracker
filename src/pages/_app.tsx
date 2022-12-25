@@ -27,7 +27,18 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <ProSidebarProvider>
           <main>
             <Component {...pageProps} />
-            <Toaster />
+            <Toaster
+              toastOptions={{
+                success: {
+                  duration: 3000,
+                  style: { padding: "1rem" },
+                },
+                error: {
+                  duration: 3000,
+                  style: { padding: "1rem" },
+                },
+              }}
+            />
           </main>
         </ProSidebarProvider>
       </SessionProvider>

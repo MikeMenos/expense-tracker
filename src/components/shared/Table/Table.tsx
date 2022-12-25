@@ -22,8 +22,7 @@ function Table<T extends object>({
       useGlobalFilter
     );
 
-  const handleFilterInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget;
+  const handleFilterInputChange = (value: string) => {
     setGlobalFilter(value);
   };
 

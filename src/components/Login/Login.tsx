@@ -22,8 +22,8 @@ const Login: FC = () => {
   };
   return (
     <div className="w-full gap-28 bg-white px-28">
-      <h1 className="mb-16 text-center">Expense Tracker</h1>
-      <Form onSubmit={handleSubmit}>
+      <h1 className="mb-16 text-center text-black">Expense Tracker</h1>
+      <Form onSubmit={handleSubmit} submitBtnVisible={false}>
         <LoginForm
           username={credentials.username}
           password={credentials.password}

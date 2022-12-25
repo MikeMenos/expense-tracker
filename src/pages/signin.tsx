@@ -1,13 +1,14 @@
-import { NextPage } from "next";
+import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
-import { FormEventHandler, useEffect, useState } from "react";
+import { type FormEventHandler, useEffect, useState } from "react";
 import Login from "../components/Login/Login";
 import Link from "next/link";
-import Button from "../components/shared/Button";
+import Button from "../components/shared/buttons/Button";
 import { BsDiscord } from "react-icons/bs";
 import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import { useGetPageTitle } from "../hooks/useGetPageTitle";
+import Loader from "../components/shared/Loader";
 
 const SignIn: NextPage = () => {
   const { status } = useSession();
@@ -33,7 +34,12 @@ const SignIn: NextPage = () => {
     console.log(res);
   };
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading")
+    return (
+      <div className="flex h-screen w-full justify-center bg-main">
+        <Loader />
+      </div>
+    );
   if (status === "authenticated") return null;
 
   return (

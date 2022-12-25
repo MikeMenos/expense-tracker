@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { GrRefresh } from "react-icons/gr";
-import Button from "../Button";
+import Button from "./Button";
 import type { ButtonInterface } from "../../../interfaces/interfaces";
 
 const RefreshIcon: FC<ButtonInterface> = ({

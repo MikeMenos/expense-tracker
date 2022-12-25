@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { ButtonInterface } from "../../interfaces/interfaces";
+import type { ButtonInterface } from "../../../interfaces/interfaces";
 
 const Button: FC<ButtonInterface> = ({
   children,

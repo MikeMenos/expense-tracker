@@ -8,6 +8,7 @@ import TableDrawer from "../components/shared/Table/TableDrawer";
 import type { Column, Row } from "react-table";
 import EditButton from "../components/shared/buttons/EditButton";
 import DeleteButton from "../components/shared/buttons/DeleteButton";
+import Loader from "../components/shared/Loader";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
@@ -93,7 +94,12 @@ const Transactions: NextPage = () => {
 
   const columns = useMemo(() => transactionColumns, []);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading")
+    return (
+      <div className="flex h-screen w-full justify-center bg-main">
+        <Loader />
+      </div>
+    );
   if (status === "unauthenticated") return null;
 
   return (
@@ -109,7 +115,7 @@ const Transactions: NextPage = () => {
           onAdd={onAdd}
           name="transactions-table"
         />
-        <TableDrawer show={show} style={{ width: "50%" }} onClose={onClose}>
+        <TableDrawer show={show} onClose={onClose}>
           <h1>hello</h1>
         </TableDrawer>
       </div>

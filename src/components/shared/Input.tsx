@@ -5,15 +5,15 @@ const Input: FC<InputInterface> = ({
   type,
   name,
   placeholder,
-  label,
   value,
   className,
   style,
   onChange,
+  icon,
 }) => {
   return (
     <>
-      <label>{label}</label>
+      <i className="absolute pl-1">{icon}</i>
       <input
         type={type}
         name={name}

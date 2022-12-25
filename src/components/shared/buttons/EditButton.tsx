@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import type { ButtonInterface } from "../../../interfaces/interfaces";
-import Button from "../Button";
+import Button from "./Button";
 
 const EditButton: FC<ButtonInterface> = ({
   onlyIcon,

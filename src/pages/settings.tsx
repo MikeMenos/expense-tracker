@@ -3,6 +3,7 @@ import { NextPage } from "next";
 import { useEffect } from "react";
 import Router from "next/router";
 import { useSession } from "next-auth/react";
+import Loader from "../components/shared/Loader";
 
 const Settings: NextPage = () => {
   const { status } = useSession();
@@ -11,7 +12,12 @@ const Settings: NextPage = () => {
     if (status === "unauthenticated") Router.replace("/signin");
   }, [status]);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading")
+    return (
+      <div className="flex h-screen w-full justify-center bg-main">
+        <Loader />
+      </div>
+    );
   if (status === "unauthenticated") return null;
 
   return (

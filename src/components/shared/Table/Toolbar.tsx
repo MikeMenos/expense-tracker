@@ -9,7 +9,7 @@ import {
 import type { TableInstance } from "react-table";
 import type { TableToolbarProps } from "../../../interfaces/interfaces";
 import AddButton from "../buttons/AddButton";
-import Input from "../Input";
+import SearchInput from "../SearchInput";
 
 export interface Command<T extends Record<string, unknown>> {
   label: string;
@@ -60,18 +60,13 @@ function Toolbar<T extends Record<string, unknown>>({
   // toolbar with add, edit, delete, filter/search column select.
   return (
     <>
-      <div className="flex items-center gap-4">
-        {onAdd && (
-          <AddButton
-            className="rounded-md bg-green px-4 py-1 text-lg font-bold transition-colors duration-300 hover:bg-greenHover"
-            onClick={onAdd}
-          />
-        )}
-        <Input
+      <div className="flex items-center justify-between gap-4">
+        {onAdd && <AddButton className="text-lg" onClick={onAdd} />}
+        <SearchInput
           placeholder="Search..."
-          onChange={handleFilterInputChange}
+          onSearch={() => handleFilterInputChange}
           value={globalFilter}
-          className="ml-auto rounded-md bg-secondary px-5 py-3 outline-none"
+          className="rounded-md bg-secondary py-3 pr-5 pl-7 outline-none"
         />
       </div>
     </>
