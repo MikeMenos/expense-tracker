@@ -9,6 +9,7 @@ import type { Column, Row } from "react-table";
 import EditButton from "../components/shared/buttons/EditButton";
 import DeleteButton from "../components/shared/buttons/DeleteButton";
 import Loader from "../components/shared/Loader";
+import TransactionsForm from "../components/Transactions/TransactionsForm";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
@@ -116,7 +117,7 @@ const Transactions: NextPage = () => {
           name="transactions-table"
         />
         <TableDrawer show={show} onClose={onClose}>
-          <h1>hello</h1>
+          <TransactionsForm record={record} setRecord={setRecord} />
         </TableDrawer>
       </div>
     </Layout>

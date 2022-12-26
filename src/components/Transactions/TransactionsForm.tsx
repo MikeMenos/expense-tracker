@@ -14,7 +14,7 @@ interface PropsInterface {
   createOrEdit?: any;
 }
 
-const CategoriesForm: FC<PropsInterface> = ({
+const TransactionsForm: FC<PropsInterface> = ({
   record,
   setRecord,
   createOrEdit,
@@ -42,14 +42,35 @@ const CategoriesForm: FC<PropsInterface> = ({
       <Form onSubmit={handleSubmit} className="drawer-form">
         <div className="mt-20 w-full">
           <Input
-            placeholder="Category"
+            placeholder="Receiver"
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            value={record?.category ?? ""}
+            value={record?.receiver ?? ""}
             type="text"
             onChange={onInputChange}
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
-            name="category"
+            name="receiver"
+          />
+
+          <Input
+            placeholder="Amount"
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            value={record?.amount ?? ""}
+            type="number"
+            onChange={onInputChange}
+            className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
+            name="amount"
+          />
+          <Input
+            placeholder="Date"
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            value={record?.createdAt ?? ""}
+            type="date"
+            onChange={onInputChange}
+            className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
+            name="createdAt"
           />
         </div>
       </Form>
@@ -57,4 +78,4 @@ const CategoriesForm: FC<PropsInterface> = ({
   );
 };
 
-export default CategoriesForm;
+export default TransactionsForm;
