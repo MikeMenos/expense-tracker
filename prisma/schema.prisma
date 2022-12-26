@@ -71,6 +71,6 @@ model Transaction {
 
 model Category {
   id        String    @id @default(cuid())
-  category  String   
+  name      String   
 }
 

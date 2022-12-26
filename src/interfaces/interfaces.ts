@@ -79,3 +79,12 @@ export interface ArionDrawerInterface {
   className?: string;
   style?: CSSProperties;
 }
+
+export interface SelectorPropsInterface {
+  value: {
+    label: string;
+    value: string;
+  };
+  name: string;
+  onChange: any;
+}

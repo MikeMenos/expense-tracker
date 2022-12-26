@@ -21,7 +21,7 @@ const CategoriesForm: FC<PropsInterface> = ({
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { category, id = "" } = record;
+  const { name, id = "" } = record;
 
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name } = e.target as HTMLInputElement;
@@ -35,7 +35,7 @@ const CategoriesForm: FC<PropsInterface> = ({
     e.preventDefault();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    createOrEdit({ category, id });
+    createOrEdit({ name, id });
   };
   return (
     <>
@@ -45,11 +45,11 @@ const CategoriesForm: FC<PropsInterface> = ({
             placeholder="Category"
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            value={record?.category ?? ""}
+            value={record?.name ?? ""}
             type="text"
             onChange={onInputChange}
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
-            name="category"
+            name="name"
           />
         </div>
       </Form>

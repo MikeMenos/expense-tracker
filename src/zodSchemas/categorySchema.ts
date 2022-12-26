@@ -1,7 +1,7 @@
 import { object, string } from "zod";
 
 export const categorySchema = object({
-  category: string({
+  name: string({
     required_error: `Category name is required`,
   })
     .min(5)

@@ -1,9 +1,7 @@
-import { type ReactElement, useState, type ChangeEvent, useMemo } from "react";
+import { type ReactElement, type ChangeEvent } from "react";
 import { useTable, useGlobalFilter } from "react-table";
 import type { TableProps } from "../../../interfaces/interfaces";
 import ToolBar from "./Toolbar";
-import Input from "../Input";
-import _ from "lodash";
 
 function Table<T extends object>({
   columns,

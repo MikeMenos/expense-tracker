@@ -7,6 +7,7 @@ import {
 import Form from "../shared/Form";
 import Input from "../shared/Input";
 import { type Row } from "react-table";
+import CategoriesSelector from "../shared/selectors/CategoriesSelector";
 
 interface PropsInterface {
   record: Row["original"];
@@ -21,22 +22,44 @@ const TransactionsForm: FC<PropsInterface> = ({
 }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  const { category, id = "" } = record;
+  const { receiver, id = "", amount, createdAt = new Date() } = record;
 
-  const onInputChange = (e: SyntheticEvent) => {
-    const { value, name } = e.target as HTMLInputElement;
+  const onSelectorChange = (
+    options: { label: string; value: string },
+    { name }: { name: string }
+  ) => {
     setRecord((state) => ({
       ...state,
-      [name]: value,
+      [name]: options,
     }));
+  };
+
+  const onInputChange = (e: SyntheticEvent) => {
+    const { value, name, type } = e.target as HTMLInputElement;
+
+    if (type === "number") {
+      setRecord((state) => ({
+        ...state,
+        [name]: parseInt(value),
+      }));
+    } else {
+      setRecord((state) => ({
+        ...state,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    createOrEdit({ category, id });
+    const category = record?.category?.value;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    createOrEdit({ receiver, id, category, amount, createdAt });
   };
+
   return (
     <>
       <Form onSubmit={handleSubmit} className="drawer-form">
@@ -51,7 +74,30 @@ const TransactionsForm: FC<PropsInterface> = ({
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
             name="receiver"
           />
-
+          <CategoriesSelector
+            value={
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              typeof record?.category === "object"
+                ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
+                  record?.category
+                : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                typeof record?.category === "string" && record?.category
+                ? {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    label: record?.category,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    value: record?.category,
+                  }
+                : ""
+            }
+            onChange={onSelectorChange}
+            name="category"
+          />
           <Input
             placeholder="Amount"
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment

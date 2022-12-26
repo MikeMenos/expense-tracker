@@ -22,16 +22,16 @@ const Categories: NextPage = () => {
 
   const { data, isFetching } = trpc.category.list.useQuery();
 
-  const categories = data?.categories.flatMap((category) => category) ?? [];
+  const categories = data?.categories.flatMap((name) => name) ?? [];
 
   useEffect(() => {
     if (status === "unauthenticated") void Router.replace("/signin");
   }, [status]);
 
   const { mutate: remove } = trpc.category.delete.useMutation({
-    onSuccess: ({ category }) => {
+    onSuccess: ({ name }) => {
       void queryClient.invalidateQueries().then(() => {
-        successToast(`${category} was deleted successfully!`);
+        successToast(`${name} was deleted successfully!`);
       });
     },
     onError: () => {
@@ -80,7 +80,7 @@ const Categories: NextPage = () => {
   const categoryColumns: Column[] = [
     { Header: "Id", accessor: "id" },
     {
-      accessor: "category",
+      accessor: "name",
       Header: "Name",
     },
     {

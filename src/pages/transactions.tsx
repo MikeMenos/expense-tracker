@@ -10,34 +10,55 @@ import EditButton from "../components/shared/buttons/EditButton";
 import DeleteButton from "../components/shared/buttons/DeleteButton";
 import Loader from "../components/shared/Loader";
 import TransactionsForm from "../components/Transactions/TransactionsForm";
+import { trpc } from "../utils/trpc";
+import { errorToast, successToast } from "../components/shared/toast/toasts";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  ConvertTZToDateTime,
+  convertTZToDateTime,
+} from "../utils/ConvertTZToDateTime";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
+  const queryClient = useQueryClient();
   const [show, setShow] = useState<boolean>(false);
   const [record, setRecord] = useState<Row["original"]>({});
 
-  const sampleData = [
-    {
-      id: "hello",
-      receiver: "jkuukuiku",
-      category: "qwwefweew",
-      amount: 1234,
-      date: "3dfhgfrhrfgthrf",
-    },
-    {
-      id: "hello2",
-      receiver: "defgefdge",
-      category: "dfgdfegferge",
-      amount: 4564565,
-      date: "efdgertghretgh",
-    },
-  ];
+  const { data, isFetching } = trpc.transaction.list.useQuery();
 
-  const data = useMemo(() => sampleData, []);
+  const transactions = data?.transactions.flatMap((receiver) => receiver) ?? [];
 
   useEffect(() => {
     if (status === "unauthenticated") Router.replace("/signin");
   }, [status]);
+
+  const { mutate: remove } = trpc.transaction.delete.useMutation({
+    onSuccess: () => {
+      void queryClient.invalidateQueries().then(() => {
+        successToast(`Record was deleted successfully!`);
+      });
+    },
+    onError: () => {
+      errorToast("Oops, something went wrong!");
+    },
+  });
+
+  const { mutate: createOrEdit } = trpc.transaction.createOrEdit.useMutation({
+    onSuccess: ({ id }) => {
+      successToast(
+        `Category was ${id !== "" ? "updated" : "added"} successfully!`
+      );
+      onClose();
+      queryClient.invalidateQueries();
+    },
+    onError: ({ message }) => {
+      errorToast(
+        JSON.parse(message)
+          .map(({ message }: { message: string }) => message)
+          .toString()
+      );
+    },
+  });
 
   const onAdd = () => {
     setShow(true);
@@ -76,6 +97,7 @@ const Transactions: NextPage = () => {
     {
       accessor: "date",
       Header: "Date",
+      Cell: ({ cell: { value } }) => <ConvertTZToDateTime date={value} />,
     },
     {
       Header: "Actions",
@@ -103,6 +125,13 @@ const Transactions: NextPage = () => {
     );
   if (status === "unauthenticated") return null;
 
+  if (isFetching)
+    return (
+      <Layout>
+        <Loader />
+      </Layout>
+    );
+
   return (
     <Layout>
       <div className="flex flex-col">
@@ -112,12 +141,16 @@ const Transactions: NextPage = () => {
         </h3>
         <Table
           columns={columns}
-          data={data}
+          data={transactions}
           onAdd={onAdd}
           name="transactions-table"
         />
         <TableDrawer show={show} onClose={onClose}>
-          <TransactionsForm record={record} setRecord={setRecord} />
+          <TransactionsForm
+            record={record}
+            setRecord={setRecord}
+            createOrEdit={createOrEdit}
+          />
         </TableDrawer>
       </div>
     </Layout>
