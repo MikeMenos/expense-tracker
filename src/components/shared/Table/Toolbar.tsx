@@ -9,7 +9,8 @@ import {
 import type { TableInstance } from "react-table";
 import type { TableToolbarProps } from "../../../interfaces/interfaces";
 import AddButton from "../buttons/AddButton";
-import SearchInput from "../SearchInput";
+import Input from "../Input";
+import { BiSearch } from "react-icons/bi";
 
 export interface Command<T extends Record<string, unknown>> {
   label: string;
@@ -24,7 +25,6 @@ export interface TableMouseEventHandler<T extends Record<string, unknown>> {
 
 function Toolbar<T extends Record<string, unknown>>({
   onAdd,
-  globalFilter,
   handleFilterInputChange,
 }: PropsWithChildren<TableToolbarProps<T>>): ReactElement | null {
   // const { columns } = instance;
@@ -62,12 +62,14 @@ function Toolbar<T extends Record<string, unknown>>({
     <>
       <div className="flex items-center justify-between gap-4">
         {onAdd && <AddButton className="text-lg" onClick={onAdd} />}
-        <SearchInput
-          placeholder="Search..."
-          onSearch={() => handleFilterInputChange}
-          value={globalFilter}
-          className="rounded-md bg-secondary py-3 pr-5 pl-7 outline-none"
-        />
+        <div className="flex items-center">
+          <Input
+            placeholder="Search..."
+            onChange={handleFilterInputChange}
+            className="rounded-md bg-secondary py-3 pr-5 pl-7 outline-none"
+            icon={<BiSearch size="1.1rem" />}
+          />
+        </div>
       </div>
     </>
   );

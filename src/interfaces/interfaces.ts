@@ -65,8 +65,7 @@ export interface TableProps<T extends object> {
 export interface TableToolbarProps<T extends Record<string, unknown>> {
   onAdd?: () => void;
   onClick?: (row: Row<T>) => void;
-  globalFilter?: string;
-  handleFilterInputChange?: (arg0: string) => void;
+  handleFilterInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ArionDrawerInterface {

@@ -1,7 +1,9 @@
-import { type ReactElement, useState, type ChangeEvent } from "react";
+import { type ReactElement, useState, type ChangeEvent, useMemo } from "react";
 import { useTable, useGlobalFilter } from "react-table";
 import type { TableProps } from "../../../interfaces/interfaces";
 import ToolBar from "./Toolbar";
+import Input from "../Input";
+import _ from "lodash";
 
 function Table<T extends object>({
   columns,
@@ -9,26 +11,32 @@ function Table<T extends object>({
   name,
   onAdd,
 }: TableProps<T>): ReactElement {
-  const [globalFilter, setGlobalFilter] = useState("");
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable<T>(
-      {
-        columns,
-        data,
-        initialState: {
-          hiddenColumns: ["id"],
-        },
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    setGlobalFilter,
+  } = useTable<T>(
+    {
+      columns,
+      data,
+      initialState: {
+        hiddenColumns: ["id"],
       },
-      useGlobalFilter
-    );
+    },
+    useGlobalFilter
+  );
 
-  const handleFilterInputChange = (value: string) => {
+  const handleFilterInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
     setGlobalFilter(value);
   };
 
   return (
     <div className="flex flex-grow flex-col">
-      <ToolBar {...{ onAdd, globalFilter, handleFilterInputChange }} />
+      <ToolBar {...{ onAdd, handleFilterInputChange }} />
       <table {...getTableProps({ className: "mt-8" })}>
         <thead>
           {headerGroups.map((headerGroup, i) => (
