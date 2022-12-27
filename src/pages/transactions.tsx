@@ -13,7 +13,7 @@ import TransactionsForm from "../components/Transactions/TransactionsForm";
 import { trpc } from "../utils/trpc";
 import { errorToast, successToast } from "../components/shared/toast/toasts";
 import { useQueryClient } from "@tanstack/react-query";
-import { ConvertTZToDateTime } from "../components/utils/ConvertTZToDateTime";
+import { ConvertTZToDateTime } from "../components/utilComponents/ConvertTZToDateTime";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
