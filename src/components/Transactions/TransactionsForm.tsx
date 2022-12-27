@@ -54,9 +54,7 @@ const TransactionsForm: FC<PropsInterface> = ({
     e.preventDefault();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const category = record?.category?.value;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+    const category = record?.category?.value || record?.category;
     createOrEdit({ receiver, id, category, amount, createdAt });
   };
 
@@ -102,7 +100,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             placeholder="Select..."
           />
           <Input
-            placeholder="Amount"
+            placeholder="Amount (€)"
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             value={record?.amount ?? ""}
@@ -116,7 +114,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             placeholder="Date"
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            value={record?.createdAt ?? ""}
+            value={record?.createdAt ?? new Date()}
             type="date"
             onChange={onInputChange}
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"

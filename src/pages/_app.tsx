@@ -34,7 +34,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
                   style: { padding: "1rem" },
                 },
                 error: {
-                  duration: 3000,
+                  duration: 4000,
                   style: { padding: "1rem" },
                 },
               }}

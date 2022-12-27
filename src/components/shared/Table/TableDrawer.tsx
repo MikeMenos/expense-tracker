@@ -13,7 +13,7 @@ const TableDrawer: FC<ArionDrawerInterface> = (props) => {
       onClose={onClose}
       open={show}
       className={className}
-      style={{ ...style, width: "30%" }}
+      style={{ ...style, width: "20%" }}
     >
       <Button
         icon={

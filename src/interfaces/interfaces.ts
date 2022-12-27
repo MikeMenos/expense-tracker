@@ -9,7 +9,7 @@ import type {
 import type { Column, Row } from "react-table";
 
 export type ChildrenType = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export interface InputInterface {

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { type FC, type SyntheticEvent, useState } from "react";
 import Form from "../shared/Form";
 import LoginForm from "./LoginForm";
@@ -21,8 +22,8 @@ const Login: FC = () => {
     console.log("hello");
   };
   return (
-    <div className="w-full gap-28 bg-white px-28">
-      <h1 className="mb-16 text-center text-black">Expense Tracker</h1>
+    <div className="w-full gap-28 rounded-md bg-secondary px-10 py-10">
+      <h1 className="mb-16 text-center">Expense Tracker</h1>
       <Form onSubmit={handleSubmit} submitBtnVisible={false}>
         <LoginForm
           username={credentials.username}
@@ -30,6 +31,11 @@ const Login: FC = () => {
           onInputChange={onInputChange}
         />
       </Form>
+      <Link href="/forgot-password" className="w-full">
+        <p className="mt-6 text-right text-sm opacity-60 hover:underline">
+          Forgot password?
+        </p>
+      </Link>
     </div>
   );
 };

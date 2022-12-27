@@ -69,7 +69,7 @@ const Transactions: NextPage = () => {
   const onDelete = (row: Row) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    void removeCategory({ id: row.original.id });
+    void remove({ id: row.original.id });
   };
 
   const onClose = () => {

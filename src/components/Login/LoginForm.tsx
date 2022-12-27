@@ -20,7 +20,7 @@ const LoginForm: FC<PropsInterface> = ({
         placeholder="Email"
         value={username}
         onChange={onInputChange}
-        className="border-b p-2 outline-none"
+        className="w-full rounded-md bg-main p-2 outline-none"
       />
       <Input
         type="password"
@@ -28,7 +28,7 @@ const LoginForm: FC<PropsInterface> = ({
         placeholder="Password"
         value={password}
         onChange={onInputChange}
-        className="border-b p-2 outline-none"
+        className="w-full rounded-md bg-main p-2 outline-none"
       />
     </div>
   );
