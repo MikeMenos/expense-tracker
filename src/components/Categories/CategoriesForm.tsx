@@ -50,6 +50,7 @@ const CategoriesForm: FC<PropsInterface> = ({
             onChange={onInputChange}
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
             name="name"
+            required
           />
         </div>
       </Form>

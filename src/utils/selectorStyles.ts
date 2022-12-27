@@ -31,6 +31,22 @@ const selectorStyles = () => {
       backgroundColor: "transparent",
       border: "none",
     }),
+    placeholder: (baseStyles: CSSObjectWithLabel) => ({
+      ...baseStyles,
+      color: "lightGray",
+      opacity: "0.6",
+    }),
+    option: (
+      baseStyles: CSSObjectWithLabel,
+      { isSelected, isFocused }: { isSelected: boolean; isFocused: boolean }
+    ) => ({
+      ...baseStyles,
+      backgroundColor: isSelected ? "#353A8E" : isFocused ? "none" : "inherit",
+      "&:hover": {
+        backgroundColor: "#13192A",
+      },
+      fontWeight: "600",
+    }),
   };
 };
 

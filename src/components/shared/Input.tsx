@@ -10,6 +10,7 @@ const Input: FC<InputInterface> = ({
   style,
   onChange,
   icon,
+  required,
 }) => {
   return (
     <>
@@ -17,11 +18,12 @@ const Input: FC<InputInterface> = ({
       <input
         type={type}
         name={name}
-        placeholder={placeholder}
+        placeholder={`${placeholder} ${required ? "*" : ""}`}
         value={value}
         onChange={onChange}
         className={className}
         style={style}
+        required={required}
       />
     </>
   );

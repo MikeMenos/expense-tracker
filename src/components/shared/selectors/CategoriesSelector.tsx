@@ -9,7 +9,8 @@ const CategoriesSelector: FC<SelectorPropsInterface> = ({
   value,
   name,
   onChange,
-  classNamePrefix,
+  required,
+  placeholder,
 }) => {
   const { data, isFetching } = trpc.category.list.useQuery();
 
@@ -24,10 +25,11 @@ const CategoriesSelector: FC<SelectorPropsInterface> = ({
       value={value}
       name={name}
       onChange={onChange}
-      classNamePrefix={classNamePrefix}
       styles={{
         ...selectorStyles(),
       }}
+      required={required}
+      placeholder={`${placeholder} ${required ? "*" : ""}`}
     />
   );
 };
