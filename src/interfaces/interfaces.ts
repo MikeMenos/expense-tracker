@@ -2,7 +2,6 @@ import type { icons } from "../arrays/arrays";
 import type {
   CSSProperties,
   HTMLInputTypeAttribute,
-  ReactElement,
   ReactNode,
   ChangeEvent,
   SetStateAction,
@@ -10,7 +9,7 @@ import type {
 import type { Column, Row } from "react-table";
 
 export type ChildrenType = {
-  children: ReactElement | ReactElement[];
+  children: ReactNode;
 };
 
 export interface InputInterface {
@@ -33,7 +32,7 @@ export interface InputInterface {
   icon?: JSX.Element;
 }
 
-export interface ButtonInterface {
+export interface ButtonInterface extends ChildrenType {
   disabled?: boolean;
   className?: string;
   loading?: boolean;
@@ -42,7 +41,6 @@ export interface ButtonInterface {
   variant?: "red" | "green";
   onClick?: VoidFunction;
   icon?: JSX.Element;
-  children?: ReactNode;
   onlyIcon?: boolean;
   onlyText?: boolean;
 }
@@ -68,8 +66,7 @@ export interface TableToolbarProps<T extends Record<string, unknown>> {
   handleFilterInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface ArionDrawerInterface {
-  children?: ReactNode;
+export interface ArionDrawerInterface extends ChildrenType {
   show: boolean;
   setShow?: SetStateAction<any>;
   width?: string;
