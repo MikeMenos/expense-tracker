@@ -10,6 +10,14 @@ body {
   @apply text-white;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
+}
+
 .css-1bdadyq {
   transition: color 0.2s ease !important;
   font-weight: 700;
@@ -27,13 +35,11 @@ body {
 .ps-active {
   color: #353a8e !important;
   background: none !important;
-  background-color: none !important;
 }
 
 .css-kvqf1i {
   font-weight: 700;
   background: none !important;
-  background-color: none !important;
 }
 
 table {

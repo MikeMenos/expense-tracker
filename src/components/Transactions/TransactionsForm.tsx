@@ -73,6 +73,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             onChange={onInputChange}
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
             name="receiver"
+            required
           />
           <CategoriesSelector
             value={
@@ -97,6 +98,8 @@ const TransactionsForm: FC<PropsInterface> = ({
             }
             onChange={onSelectorChange}
             name="category"
+            required
+            placeholder="Select..."
           />
           <Input
             placeholder="Amount"
@@ -107,6 +110,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             onChange={onInputChange}
             className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
             name="amount"
+            required
           />
           <Input
             placeholder="Date"
