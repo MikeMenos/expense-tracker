@@ -13,10 +13,7 @@ import TransactionsForm from "../components/Transactions/TransactionsForm";
 import { trpc } from "../utils/trpc";
 import { errorToast, successToast } from "../components/shared/toast/toasts";
 import { useQueryClient } from "@tanstack/react-query";
-import {
-  ConvertTZToDateTime,
-  convertTZToDateTime,
-} from "../utils/ConvertTZToDateTime";
+import { ConvertTZToDateTime } from "../components/utils/ConvertTZToDateTime";
 
 const Transactions: NextPage = () => {
   const { status } = useSession();
@@ -95,7 +92,7 @@ const Transactions: NextPage = () => {
       Header: "Amount",
     },
     {
-      accessor: "date",
+      accessor: "createdAt",
       Header: "Date",
       Cell: ({ cell: { value } }) => <ConvertTZToDateTime date={value} />,
     },

@@ -97,6 +97,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             }
             onChange={onSelectorChange}
             name="category"
+            classNamePrefix="bg-red-500"
           />
           <Input
             placeholder="Amount"

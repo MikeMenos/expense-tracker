@@ -87,4 +87,6 @@ export interface SelectorPropsInterface {
   };
   name: string;
   onChange: any;
+  className?: string;
+  classNamePrefix?: string;
 }

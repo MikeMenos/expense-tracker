@@ -1,4 +1,4 @@
-const buildSelectorOptions = (d: any) => {
+const buildSelectorOptions = (d: { name: string }) => {
   return {
     label: d.name,
     value: d.name,

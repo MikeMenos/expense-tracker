@@ -3,11 +3,13 @@ import ReactSelect from "react-select";
 import { type SelectorPropsInterface } from "../../../interfaces/interfaces";
 import buildSelectorOptions from "../../../utils/buildSelectorOptions";
 import { trpc } from "../../../utils/trpc";
+import selectorStyles from "../../../utils/selectorStyles";
 
 const CategoriesSelector: FC<SelectorPropsInterface> = ({
   value,
   name,
   onChange,
+  classNamePrefix,
 }) => {
   const { data, isFetching } = trpc.category.list.useQuery();
 
@@ -22,6 +24,10 @@ const CategoriesSelector: FC<SelectorPropsInterface> = ({
       value={value}
       name={name}
       onChange={onChange}
+      classNamePrefix={classNamePrefix}
+      styles={{
+        ...selectorStyles(),
+      }}
     />
   );
 };
