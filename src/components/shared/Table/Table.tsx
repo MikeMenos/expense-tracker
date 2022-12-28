@@ -1,4 +1,4 @@
-import { type ReactElement, type ChangeEvent } from "react";
+import { type ReactElement, type ChangeEvent, useState } from "react";
 import { useTable, useGlobalFilter } from "react-table";
 import type { TableProps } from "../../../interfaces/interfaces";
 import ToolBar from "./Toolbar";
@@ -27,14 +27,22 @@ function Table<T extends object>({
     useGlobalFilter
   );
 
+  const [filterValue, setFilterValue] = useState<string>("");
+
   const handleFilterInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     setGlobalFilter(value);
+    setFilterValue(value);
   };
 
   return (
     <div className="flex flex-grow flex-col">
-      <ToolBar {...{ onAdd, handleFilterInputChange }} />
+      <ToolBar
+        {...{ onAdd, handleFilterInputChange }}
+        setGlobalFilter={setGlobalFilter}
+        filterValue={filterValue}
+        setFilterValue={setFilterValue}
+      />
       <table {...getTableProps({ className: "mt-8" })}>
         <thead>
           {headerGroups.map((headerGroup, i) => (

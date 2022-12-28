@@ -11,10 +11,13 @@ const Input: FC<InputInterface> = ({
   onChange,
   icon,
   required,
+  closeIcon,
 }) => {
   return (
-    <>
+    <div className="relative flex items-center">
       <i className="absolute pl-1">{icon}</i>
+      {value && <i className="absolute right-0 pr-2">{closeIcon}</i>}
+
       <input
         type={type}
         name={name}
@@ -25,7 +28,7 @@ const Input: FC<InputInterface> = ({
         style={style}
         required={required}
       />
-    </>
+    </div>
   );
 };
 

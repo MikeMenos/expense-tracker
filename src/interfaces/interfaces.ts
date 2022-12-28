@@ -30,6 +30,8 @@ export interface InputInterface {
   onKeyDown?: KeyboardEvent;
   defaultValue?: string | number;
   icon?: JSX.Element;
+  closeIcon?: JSX.Element;
+  onClear?: VoidFunction;
 }
 
 export interface ButtonInterface extends ChildrenType {
@@ -64,6 +66,9 @@ export interface TableToolbarProps<T extends Record<string, unknown>> {
   onAdd?: () => void;
   onClick?: (row: Row<T>) => void;
   handleFilterInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  setGlobalFilter?: any;
+  filterValue?: string;
+  setFilterValue?: any;
 }
 
 export interface ArionDrawerInterface extends ChildrenType {
