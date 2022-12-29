@@ -89,7 +89,7 @@ const Transactions: NextPage = () => {
     },
     {
       accessor: "amount",
-      Header: "Amount",
+      Header: "Amount (€)",
     },
     {
       accessor: "createdAt",
