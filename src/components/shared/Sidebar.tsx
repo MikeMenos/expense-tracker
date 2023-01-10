@@ -13,7 +13,7 @@ import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarRightCollapse,
 } from "react-icons/tb";
-import { icons, menuItems } from "../../arrays/arrays";
+import { icons, menuItems } from "../../arrays";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetPageTitle } from "../../hooks/useGetPageTitle";

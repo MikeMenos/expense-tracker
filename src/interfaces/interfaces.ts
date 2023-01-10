@@ -1,4 +1,4 @@
-import type { icons } from "../arrays/arrays";
+import type { icons } from "../arrays";
 import type {
   CSSProperties,
   HTMLInputTypeAttribute,

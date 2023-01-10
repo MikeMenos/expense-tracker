@@ -1,5 +1,5 @@
 import Layout from "../components/shared/Layout";
-import { NextPage } from "next";
+import { type NextPage } from "next";
 import { useEffect } from "react";
 import Router from "next/router";
 import { useSession } from "next-auth/react";
@@ -18,11 +18,17 @@ const Settings: NextPage = () => {
         <Loader />
       </div>
     );
+
   if (status === "unauthenticated") return null;
 
   return (
     <Layout>
-      <div>HELLO SETTINGS</div>
+      <div className="flex flex-col">
+        <h1 className="mb-4">Settings</h1>
+        <h3 className="mb-10 font-semibold text-purple">
+          Review or change your personal settings
+        </h3>
+      </div>
     </Layout>
   );
 };
