@@ -15,24 +15,24 @@ const SignIn: NextPage = () => {
   const router = useRouter();
   const { title } = useGetPageTitle(router.pathname);
 
-  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
+  // const [userInfo, setUserInfo] = useState({ email: "", password: "" });
 
   useEffect(() => {
     if (status === "authenticated") Router.replace("/");
   }, [status]);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    // validate your userinfo
-    e.preventDefault();
-
-    const res = await signIn("credentials", {
-      email: userInfo.email,
-      password: userInfo.password,
-      redirect: false,
-    });
-
-    console.log(res);
-  };
+  // const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+  //   // validate your userinfo
+  //   e.preventDefault();
+  //
+  //   const res = await signIn("credentials", {
+  //     email: userInfo.email,
+  //     password: userInfo.password,
+  //     redirect: false,
+  //   });
+  //
+  //   console.log(res);
+  // };
 
   if (status === "loading")
     return (
