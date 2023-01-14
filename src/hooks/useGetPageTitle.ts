@@ -10,6 +10,7 @@ export const useGetPageTitle = (pathname: string) => {
     if (pathname === "/categories") setTitle("Categories");
     if (pathname === "/signin") setTitle("Sign In");
     if (pathname === "/forgot-password") setTitle("Forgot Password");
+    if (pathname === "/signup") setTitle("Register");
   }, [pathname]);
 
   return { title };

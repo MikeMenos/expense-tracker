@@ -26,9 +26,6 @@ const Sidebar: FC = () => {
 
   const getActive = (menuText: string) => {
     if (title === menuText) return true;
-    if (title === menuText) return true;
-    if (title === menuText) return true;
-    if (title === menuText) return true;
   };
   return (
     <div className="relative flex h-[100vh] ">

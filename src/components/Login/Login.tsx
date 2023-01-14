@@ -53,6 +53,14 @@ const Login: FC = () => {
       >
         Log In
       </Button>
+      <hr className="mx-auto mt-8 w-1/5 opacity-60" />
+      <p className="mt-4 text-center text-sm opacity-60">
+        Don&apos;t have an account? Click{" "}
+        <span className="font-bold hover:underline">
+          <Link href="/signup">here</Link>
+        </span>{" "}
+        to Sign Up
+      </p>
     </div>
   );
 };

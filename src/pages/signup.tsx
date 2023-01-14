@@ -1,15 +1,14 @@
 import { type NextPage } from "next";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { type FormEventHandler, useEffect, useState } from "react";
-import Login from "../components/Login/Login";
-import Button from "../components/shared/buttons/Button";
 import { BsDiscord } from "react-icons/bs";
 import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import { useGetPageTitle } from "../hooks/useGetPageTitle";
 import Loader from "../components/shared/Loader";
+import Register from "../components/Register/Register";
 
-const SignIn: NextPage = () => {
+const SignUp: NextPage = () => {
   const { status } = useSession();
   const router = useRouter();
   const { title } = useGetPageTitle(router.pathname);
@@ -19,19 +18,6 @@ const SignIn: NextPage = () => {
   useEffect(() => {
     if (status === "authenticated") Router.replace("/");
   }, [status]);
-
-  // const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-  //   // validate your userinfo
-  //   e.preventDefault();
-  //
-  //   const res = await signIn("credentials", {
-  //     email: userInfo.email,
-  //     password: userInfo.password,
-  //     redirect: false,
-  //   });
-  //
-  //   console.log(res);
-  // };
 
   if (status === "loading")
     return (
@@ -50,18 +36,11 @@ const SignIn: NextPage = () => {
       </Head>
       <div className="flex h-screen items-center justify-center bg-main">
         <div className="flex w-[450px] flex-col items-center justify-center rounded-md bg-secondary py-10">
-          <Login />
-          <Button
-            className="mt-16 flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
-            onClick={() => signIn("discord")}
-            icon={<BsDiscord size={"1.5em"} />}
-          >
-            Sign In with Discord
-          </Button>{" "}
+          <Register />
         </div>
       </div>
     </>
   );
 };
 
-export default SignIn;
+export default SignUp;
