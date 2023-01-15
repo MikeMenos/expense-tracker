@@ -1,6 +1,6 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 import { verify } from "argon2";
 // Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
@@ -10,23 +10,18 @@ import { loginSchema } from "../../../zodSchemas/loginSchema";
 
 export const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
-
+  session: {
+    strategy: "jwt",
+  },
   adapter: PrismaAdapter(prisma),
   providers: [
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
-    Credentials({
-      name: "credentials",
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "jsmith@gmail.com",
-        },
-        password: { label: "Password", type: "password" },
-      },
+    CredentialsProvider({
+      type: "credentials",
+      credentials: {},
       authorize: async (credentials) => {
         const creds = await loginSchema.parseAsync(credentials);
 
@@ -38,11 +33,11 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // const isValidPassword = await verify(user.password, creds.password);
+        const isValidPassword = await verify(user.password, creds.password);
 
-        // if (!isValidPassword) {`
-        //   return null;
-        // }
+        if (!isValidPassword) {
+          return null;
+        }
 
         return {
           id: user.id,
@@ -73,13 +68,10 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  jwt: {
-    maxAge: 15 * 24 * 30 * 60, // 15 days
-  },
   pages: {
     signIn: "/signin",
     // error: '/auth/error',
-    newUser: "/signup",
+    newUser: "/register",
   },
 };
 
