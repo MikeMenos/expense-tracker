@@ -51,6 +51,7 @@ const SignIn: NextPage = () => {
       <div className="flex h-screen items-center justify-center bg-main">
         <div className="flex w-[450px] flex-col items-center justify-center rounded-md bg-secondary py-10">
           {/* <Login /> */}
+          <h1 className="text-center">Welcome to the Expense Tracker!</h1>
           <Button
             className="mt-16 flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
             onClick={() => signIn("discord")}
