@@ -1,10 +1,10 @@
 import { transactionsRouter } from "./transactions";
 import { router } from "../trpc";
-import { authRouter } from "./auth";
+// import { authRouter } from "./auth";
 import { categoryRouter } from "./category";
 
 export const appRouter = router({
-  auth: authRouter,
+  // auth: authRouter,
   category: categoryRouter,
   transaction: transactionsRouter,
 });
