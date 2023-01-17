@@ -18,16 +18,16 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white;
 }
 
-.css-1bdadyq {
+.css-fayd5x-MenuButtonRef {
   transition: color 0.2s ease !important;
   font-weight: 700;
 }
-.css-1bdadyq:last-child:hover {
+.css-ylonsm:hover {
   color: #e50000 !important;
   background: none !important;
 }
 
-.css-1bdadyq:hover {
+.css-fayd5x-MenuButtonRef:hover {
   color: #353a8e !important;
   background: none !important;
 }
@@ -37,7 +37,7 @@ input:-webkit-autofill:active {
   background: none !important;
 }
 
-.css-kvqf1i {
+.css-12w9als {
   font-weight: 700;
   background: none !important;
 }

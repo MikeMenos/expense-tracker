@@ -62,7 +62,7 @@ const Sidebar: FC = () => {
                 <MenuItem
                   key={item.text}
                   icon={<Icon size="1.5em" />}
-                  routerLink={<Link href={item.href} />}
+                  component={<Link href={item.href} />}
                   active={getActive(item.text)}
                 >
                   {item.text}
