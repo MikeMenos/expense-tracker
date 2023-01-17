@@ -1,11 +1,20 @@
 import Link from "next/link";
-import { type FC, type SyntheticEvent, useState } from "react";
+import {
+  type FC,
+  type SyntheticEvent,
+  useState,
+  type ChangeEvent,
+  useEffect,
+} from "react";
 import Form from "../shared/Form";
 import LoginForm from "./LoginForm";
 import Button from "../shared/buttons/Button";
-import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
+import { trpc } from "../../utils/trpc";
 
 const Login: FC = () => {
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [credentials, setCredentials] = useState<{
     email: string;
     password: string;
@@ -14,28 +23,43 @@ const Login: FC = () => {
     password: "",
   });
 
-  const onInputChange = (e: SyntheticEvent) => {
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target as HTMLInputElement;
 
     setCredentials((state) => ({ ...state, [name]: value }));
   };
 
-  const handleSubmit = async (e: SyntheticEvent) => {
-    // validate your userinfo
+  const { mutate: login, error } = trpc.auth.login.useMutation({
+    onSuccess: () => {
+      router.push("/");
+    },
+    onError: (data) => {
+      setErrorMessage(data.message);
+    },
+  });
+
+  useEffect(() => {
+    if (errorMessage) {
+      setTimeout(() => {
+        setErrorMessage("");
+      }, 3000);
+    }
+  }, [errorMessage]);
+
+  const handleSubmit = async (
+    e: SyntheticEvent,
+    credentials: { email: string; password: string }
+  ) => {
     e.preventDefault();
 
-    const res = await signIn("credentials", {
-      email: credentials.email,
-      password: credentials.password,
-      redirect: true,
-    });
-
-    console.log(res);
+    login(credentials);
   };
+
   return (
     <div className="w-full gap-28 rounded-md bg-secondary px-10 py-10">
       <h1 className="mb-16 text-center">Expense Tracker</h1>
-      <Form onSubmit={handleSubmit} submitBtnVisible={false}>
+      <Form submitBtnVisible={false}>
+        <p className="pb-1 text-sm text-red-600">{error && errorMessage}</p>
         <LoginForm
           email={credentials.email}
           password={credentials.password}
@@ -50,6 +74,7 @@ const Login: FC = () => {
       <Button
         type="submit"
         className="mx-auto mt-12 flex w-2/4 justify-center rounded-md bg-purple px-4 py-1 text-lg font-bold transition-colors duration-300 hover:bg-purpleHover"
+        onClick={(e) => handleSubmit(e, credentials)}
       >
         Log In
       </Button>

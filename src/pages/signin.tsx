@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
-import { type FormEventHandler, useEffect, useState } from "react";
-// import Login from "../components/Login/Login";
+import { useEffect } from "react";
+import Login from "../components/Login/Login";
 import Button from "../components/shared/buttons/Button";
 import { BsDiscord } from "react-icons/bs";
 import Router, { useRouter } from "next/router";
@@ -20,19 +20,6 @@ const SignIn: NextPage = () => {
     if (status === "authenticated") Router.replace("/");
   }, [status]);
 
-  // const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-  //   // validate your userinfo
-  //   e.preventDefault();
-  //
-  //   const res = await signIn("credentials", {
-  //     email: userInfo.email,
-  //     password: userInfo.password,
-  //     redirect: false,
-  //   });
-  //
-  //   console.log(res);
-  // };
-
   if (status === "loading")
     return (
       <div className="flex h-screen w-full justify-center bg-main">
@@ -50,10 +37,9 @@ const SignIn: NextPage = () => {
       </Head>
       <div className="flex h-screen items-center justify-center bg-main">
         <div className="flex w-[450px] flex-col items-center justify-center rounded-md bg-secondary py-10">
-          {/* <Login /> */}
-          <h1 className="text-center">Welcome to the Expense Tracker!</h1>
+          <Login />
           <Button
-            className="mt-16 flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
+            className="flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
             onClick={() => signIn("discord")}
             icon={<BsDiscord size={"1.5em"} />}
           >

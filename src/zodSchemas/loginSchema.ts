@@ -2,11 +2,11 @@ import * as z from "zod";
 
 export const loginSchema = z.object({
   email: z.string().email(),
-  password: z.string().min(4).max(12),
+  password: z.string(),
 });
 
 export const signUpSchema = loginSchema.extend({
-  username: z.string(),
+  name: z.string(),
 });
 
 export type ILogin = z.infer<typeof loginSchema>;

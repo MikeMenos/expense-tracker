@@ -4,7 +4,7 @@ import AddButton from "./buttons/AddButton";
 
 interface PropsInterface extends ChildrenType {
   className?: string;
-  onSubmit: (e: SyntheticEvent) => void;
+  onSubmit?: (e: SyntheticEvent) => void;
   submitBtnVisible?: boolean;
 }
 

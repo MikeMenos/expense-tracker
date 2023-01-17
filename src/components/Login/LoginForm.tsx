@@ -1,10 +1,10 @@
 import Input from "../shared/Input";
-import { type FC, type SyntheticEvent } from "react";
+import { type FC, type ChangeEvent } from "react";
 
 interface PropsInterface {
   email: string;
   password: string;
-  onInputChange: (e: SyntheticEvent) => void;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const LoginForm: FC<PropsInterface> = ({ email, password, onInputChange }) => {

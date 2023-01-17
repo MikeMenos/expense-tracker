@@ -22,14 +22,14 @@ const Categories: NextPage = () => {
 
   const { data, isFetching } = trpc.category.list.useQuery();
 
-  const categories = data?.categories.flatMap((name) => name) ?? [];
+  const categories = data?.categories.flatMap((name: any) => name) ?? [];
 
   useEffect(() => {
     if (status === "unauthenticated") void Router.replace("/signin");
   }, [status]);
 
   const { mutate: remove } = trpc.category.delete.useMutation({
-    onSuccess: ({ name }) => {
+    onSuccess: ({ name }: { name: string }) => {
       void queryClient.invalidateQueries().then(() => {
         successToast(`${name} was deleted successfully!`);
       });
@@ -40,14 +40,14 @@ const Categories: NextPage = () => {
   });
 
   const { mutate: createOrEdit } = trpc.category.createOrEdit.useMutation({
-    onSuccess: ({ id }) => {
+    onSuccess: ({ id }: { id: string }) => {
       successToast(
         `Category was ${id !== "" ? "updated" : "added"} successfully!`
       );
       onClose();
       queryClient.invalidateQueries();
     },
-    onError: ({ message }) => {
+    onError: ({ message }: { message: any }) => {
       errorToast(
         JSON.parse(message)
           .map(({ message }: { message: string }) => message)

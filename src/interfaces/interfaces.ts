@@ -5,6 +5,7 @@ import type {
   ReactNode,
   ChangeEvent,
   SetStateAction,
+  SyntheticEvent,
 } from "react";
 import type { Column, Row } from "react-table";
 
@@ -41,7 +42,7 @@ export interface ButtonInterface extends ChildrenType {
   type?: "submit" | "button";
   show?: boolean;
   variant?: "red" | "green";
-  onClick?: VoidFunction;
+  onClick?: VoidFunction | ((e: SyntheticEvent) => Promise<void>);
   icon?: JSX.Element;
   onlyIcon?: boolean;
   onlyText?: boolean;
@@ -63,7 +64,7 @@ export interface TableProps<T extends object> {
 }
 
 export interface TableToolbarProps<T extends Record<string, unknown>> {
-  onAdd?: () => void;
+  onAdd?: VoidFunction;
   onClick?: (row: Row<T>) => void;
   handleFilterInputChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   setGlobalFilter?: any;
