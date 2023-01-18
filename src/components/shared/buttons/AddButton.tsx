@@ -16,7 +16,7 @@ const AddButton: FC<ButtonInterface> = ({
       type={type}
       icon={!onlyText ? <IoMdAddCircleOutline size="1.5rem" /> : undefined}
       onClick={onClick}
-      className={`${className} rounded-md bg-green px-4 py-1 font-bold transition-colors duration-300 hover:bg-greenHover`}
+      className={`${className} rounded-xl bg-green px-4 py-1 font-bold transition-colors duration-300 hover:bg-greenHover`}
     >
       {onlyIcon ? "" : children}
     </Button>

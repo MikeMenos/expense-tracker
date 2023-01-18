@@ -28,7 +28,7 @@ function Toolbar<T extends Record<string, unknown>>({
             value={filterValue}
             placeholder="Search..."
             onChange={handleFilterInputChange}
-            className="rounded-md bg-secondary py-3 pr-5 pl-7 outline-none"
+            className="rounded-xl bg-secondary py-3 pr-5 pl-7 outline-none"
             icon={<BiSearch size="1.1rem" />}
             closeIcon={<RiCloseFill size="1.1rem" onClick={clearFilterInput} />}
           />

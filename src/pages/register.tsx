@@ -32,7 +32,7 @@ const SignUp: NextPage = () => {
         <link rel="icon" href="/public/favicon.ico" />
       </Head>
       <div className="flex h-screen items-center justify-center bg-main">
-        <div className="flex w-[450px] flex-col items-center justify-center rounded-md bg-secondary py-10">
+        <div className="flex w-[450px] flex-col items-center justify-center rounded-xl bg-secondary py-10">
           <Register />
         </div>
       </div>

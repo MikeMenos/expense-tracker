@@ -22,7 +22,7 @@ const RegisterForm: FC<PropsInterface> = ({
         placeholder="Username"
         value={username}
         onChange={onInputChange}
-        className="w-full rounded-md bg-main p-2 outline-none"
+        className="w-full rounded-xl bg-main p-2 outline-none"
       />
       <Input
         type="email"
@@ -30,7 +30,7 @@ const RegisterForm: FC<PropsInterface> = ({
         placeholder="Email"
         value={email}
         onChange={onInputChange}
-        className="w-full rounded-md bg-main p-2 outline-none"
+        className="w-full rounded-xl bg-main p-2 outline-none"
       />
       <Input
         type="password"
@@ -38,7 +38,7 @@ const RegisterForm: FC<PropsInterface> = ({
         placeholder="Password"
         value={password}
         onChange={onInputChange}
-        className="w-full rounded-md bg-main p-2 outline-none"
+        className="w-full rounded-xl bg-main p-2 outline-none"
       />
     </div>
   );

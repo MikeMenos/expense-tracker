@@ -63,7 +63,7 @@ export default Register;
 //   };
 
 //   return (
-//     <div className="w-full gap-28 rounded-md bg-secondary px-10 py-10">
+//     <div className="w-full gap-28 rounded-xl bg-secondary px-10 py-10">
 //       <h1 className="mb-16 text-center">Expense Tracker</h1>
 //       <form onSubmit={(e) => handleSubmit(e, credentials)}>
 //         <RegisterForm
@@ -75,7 +75,7 @@ export default Register;
 //       </form>
 //       <Button
 //         type="submit"
-//         className="mx-auto mt-12 flex w-2/4 justify-center rounded-md bg-purple px-4 py-1 text-lg font-bold transition-colors duration-300 hover:bg-purpleHover"
+//         className="mx-auto mt-12 flex w-2/4 justify-center rounded-xl bg-purple px-4 py-1 text-lg font-bold transition-colors duration-300 hover:bg-purpleHover"
 //       >
 //         Create Account
 //       </Button>

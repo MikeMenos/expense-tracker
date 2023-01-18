@@ -21,7 +21,7 @@ export const modalToast = () => {
             Are you sure you want to delete this category?
           </p>
           <Button
-            className="rounded-md bg-red-500 px-4 font-semibold text-white"
+            className="rounded-xl bg-red-500 px-4 font-semibold text-white"
             onClick={() => onClick(t)}
           >
             Delete

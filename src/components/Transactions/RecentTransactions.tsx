@@ -43,7 +43,7 @@ const RecentTransactions = () => {
     );
 
   return (
-    <div className="mt-4 rounded-md bg-secondary px-10 py-8">
+    <div className="mt-4 rounded-xl bg-secondary px-10 py-8">
       <h2>Recent Transactions</h2>
       <Table
         toolbarEnabled={false}
@@ -51,14 +51,17 @@ const RecentTransactions = () => {
         data={transactions}
         name="transactions-table"
       />
-      <div className="group mt-8 ml-auto flex w-28 cursor-pointer items-center justify-end rounded-lg border p-1">
-        <Link href="/transactions" className="mx-auto font-semibold">
+      <div className="group mt-8 ml-auto flex w-28 cursor-pointer items-center justify-end rounded-xl border p-1">
+        <Link
+          href="/transactions"
+          className="mx-auto flex items-center font-semibold"
+        >
           View all
+          <BiRightArrowAlt
+            size="1.7rem"
+            className="transition-all duration-100 group-hover:translate-x-1"
+          />
         </Link>
-        <BiRightArrowAlt
-          size="1.7rem"
-          className="transition-all duration-100 group-hover:translate-x-1"
-        />
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ const CategoriesForm: FC<PropsInterface> = ({
             value={record?.name ?? ""}
             type="text"
             onChange={onInputChange}
-            className="mt-6 w-full rounded-md bg-secondary p-2 outline-none"
+            className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
             name="name"
             required
           />
