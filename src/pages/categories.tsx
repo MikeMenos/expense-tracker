@@ -80,8 +80,8 @@ const Categories: NextPage = () => {
   const categoryColumns: Column[] = [
     { Header: "Id", accessor: "id" },
     {
-      accessor: "name",
       Header: "Name",
+      accessor: "name",
     },
     {
       Header: "Actions",
@@ -124,6 +124,8 @@ const Categories: NextPage = () => {
           Manage your expense categories
         </h3>
         <Table
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           columns={columns}
           data={categories}
           onAdd={onAdd}

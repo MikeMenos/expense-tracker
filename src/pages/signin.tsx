@@ -1,9 +1,9 @@
 import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
-import Login from "../components/Login/Login";
 import Button from "../components/shared/buttons/Button";
 import { BsDiscord } from "react-icons/bs";
+import { AiFillGoogleCircle } from "react-icons/ai";
 import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import { useGetPageTitle } from "../hooks/useGetPageTitle";
@@ -37,13 +37,22 @@ const SignIn: NextPage = () => {
       </Head>
       <div className="flex h-screen items-center justify-center bg-main">
         <div className="flex w-[450px] flex-col items-center justify-center rounded-md bg-secondary py-10">
-          <Login />
+          <h1 className="mb-8 text-center">
+            Log in to the <br /> Expense Tracker
+          </h1>
           <Button
-            className="flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
+            className="flex items-center gap-4 rounded-xl bg-[#4285F4] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
+            onClick={() => signIn("google")}
+            icon={<AiFillGoogleCircle size={"1.5em"} />}
+          >
+            Continue with Google
+          </Button>{" "}
+          <Button
+            className="mt-4 flex items-center gap-4 rounded-xl bg-[#404EED] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
             onClick={() => signIn("discord")}
             icon={<BsDiscord size={"1.5em"} />}
           >
-            Sign In with Discord
+            Continue with Discord
           </Button>{" "}
         </div>
       </div>
