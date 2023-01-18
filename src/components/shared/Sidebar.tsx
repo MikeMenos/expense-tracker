@@ -17,6 +17,7 @@ import { icons, menuItems } from "../../arrays";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetPageTitle } from "../../hooks/useGetPageTitle";
+import Image from "next/image";
 
 const Sidebar: FC = () => {
   const { collapseSidebar, collapsed } = useProSidebar();
@@ -42,11 +43,12 @@ const Sidebar: FC = () => {
       >
         <div className="mt-12">
           <div className="flex flex-col items-center">
-            <img
+            <Image
               src={session?.user?.image ?? ""}
               alt="Profile Image"
               width={collapsed ? 40 : 80}
               height={collapsed ? 40 : 80}
+              className="rounded-full"
             />
             {!collapsed && (
               <p className="mt-2 text-center">
