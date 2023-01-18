@@ -18,16 +18,20 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: white;
 }
 
-.css-fayd5x-MenuButtonRef {
+.css-mf2zkt {
   transition: color 0.2s ease !important;
   font-weight: 700;
+}
+
+.css-ylonsm {
+  transition: color 0.2s ease !important;
 }
 .css-ylonsm:hover {
   color: #e50000 !important;
   background: none !important;
 }
 
-.css-fayd5x-MenuButtonRef:hover {
+.css-mf2zkt:hover {
   color: #353a8e !important;
   background: none !important;
 }
