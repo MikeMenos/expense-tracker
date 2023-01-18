@@ -1,4 +1,3 @@
-import type { icons } from "../arrays";
 import type {
   CSSProperties,
   HTMLInputTypeAttribute,
@@ -8,6 +7,7 @@ import type {
   SyntheticEvent,
 } from "react";
 import type { Column, Row } from "react-table";
+import { icons } from "../components/shared/Sidebar";
 
 export type ChildrenType = {
   children?: ReactNode;

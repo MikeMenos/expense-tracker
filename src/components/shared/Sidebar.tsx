@@ -13,11 +13,45 @@ import {
   TbLayoutSidebarLeftCollapse,
   TbLayoutSidebarRightCollapse,
 } from "react-icons/tb";
-import { icons, menuItems } from "../../arrays";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetPageTitle } from "../../hooks/useGetPageTitle";
 import Image from "next/image";
+import { MdDashboard } from "react-icons/md";
+import { RiExchangeBoxLine } from "react-icons/ri";
+import { FiSettings } from "react-icons/fi";
+import { MdCategory } from "react-icons/md";
+import { type MenuItem as MenuItemInterface } from "../../interfaces/interfaces";
+
+export const icons = {
+  MdDashboard,
+  RiExchangeBoxLine,
+  FiSettings,
+  MdCategory,
+};
+
+export const menuItems: MenuItemInterface[] = [
+  {
+    text: "Dashboard",
+    href: "/",
+    icon: "MdDashboard",
+  },
+  {
+    text: "Transactions",
+    href: "/transactions",
+    icon: "RiExchangeBoxLine",
+  },
+  {
+    text: "Categories",
+    href: "/categories",
+    icon: "MdCategory",
+  },
+  {
+    text: "Settings",
+    href: "/settings",
+    icon: "FiSettings",
+  },
+];
 
 const Sidebar: FC = () => {
   const { collapseSidebar, collapsed } = useProSidebar();
