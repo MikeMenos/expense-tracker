@@ -1,11 +1,16 @@
+import { type FC } from "react";
 import { ThreeCircles } from "react-loader-spinner";
 
-const Loader = () => {
+interface PropsInterface {
+  width?: number;
+  height?: number;
+}
+const Loader: FC<PropsInterface> = ({ width = 100, height = 100 }) => {
   return (
     <div className="flex h-[100%] w-full items-center justify-center">
       <ThreeCircles
-        height="100"
-        width="100"
+        height={height}
+        width={width}
         color="#353A8E"
         wrapperStyle={{}}
         wrapperClass=""

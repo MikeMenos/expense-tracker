@@ -6,7 +6,7 @@ import ToolBar from "./Toolbar";
 function Table<T extends object>({
   columns,
   data,
-  name,
+  toolbarEnabled = true,
   onAdd,
 }: TableProps<T>): ReactElement {
   const {
@@ -37,12 +37,15 @@ function Table<T extends object>({
   return (
     <>
       <div className="flex flex-grow flex-col">
-        <ToolBar
-          {...{ onAdd, handleFilterInputChange }}
-          setGlobalFilter={setGlobalFilter}
-          filterValue={filterValue}
-          setFilterValue={setFilterValue}
-        />
+        {toolbarEnabled && (
+          <ToolBar
+            {...{ onAdd, handleFilterInputChange }}
+            setGlobalFilter={setGlobalFilter}
+            filterValue={filterValue}
+            setFilterValue={setFilterValue}
+          />
+        )}
+
         <table {...getTableProps({ className: "mt-8" })}>
           <thead>
             {headerGroups.map((headerGroup, i) => (

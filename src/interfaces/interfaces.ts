@@ -7,7 +7,7 @@ import type {
   SyntheticEvent,
 } from "react";
 import type { Column, Row } from "react-table";
-import { icons } from "../components/shared/Sidebar";
+import { type icons } from "../components/shared/Sidebar";
 
 export type ChildrenType = {
   children?: ReactNode;
@@ -58,9 +58,10 @@ export interface TableProps<T extends object> {
   columns: Column<T>[];
   data: T[];
   name: string;
-  onAdd?: () => void;
+  onAdd?: VoidFunction;
   onClick?: (row: Row<T>) => void;
   style?: CSSProperties;
+  toolbarEnabled?: boolean;
 }
 
 export interface TableToolbarProps<T extends Record<string, unknown>> {

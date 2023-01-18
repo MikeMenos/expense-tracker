@@ -41,7 +41,7 @@ const SignIn: NextPage = () => {
             Log in to the <br /> Expense Tracker
           </h1>
           <Button
-            className="flex items-center gap-4 rounded-xl bg-[#4285F4] px-6 py-2 font-semibold text-white hover:bg-[#4752C4]"
+            className="flex items-center gap-4 rounded-xl bg-[#4285F4] px-6 py-2 font-semibold text-white"
             onClick={() => signIn("google")}
             icon={<AiFillGoogleCircle size={"1.5em"} />}
           >
