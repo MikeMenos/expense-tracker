@@ -37,7 +37,7 @@ const RecentTransactions = () => {
 
   if (isFetching)
     return (
-      <div className="p-10">
+      <div className="mt-4 rounded-xl bg-secondary px-10 py-8">
         <Loader width={50} height={50} />
       </div>
     );

@@ -5,8 +5,9 @@ import Router from "next/router";
 import Layout from "../components/shared/Layout";
 import Loader from "../components/shared/Loader";
 import RecentTransactions from "../components/Transactions/RecentTransactions";
-import Goals from "../components/Goals";
+import Goals from "../components/Goals/Goals";
 import Overview from "../components/Overview/Overview";
+import GoalDrawer from "../components/Goals/GoalDrawer";
 
 const Home: NextPage = () => {
   const { status } = useSession();
@@ -37,6 +38,12 @@ const Home: NextPage = () => {
               <RecentTransactions />
             </div>
           </div>
+          {/*<GoalDrawer*/}
+          {/*  title={title}*/}
+          {/*  budget={budget}*/}
+          {/*  setGoals={setGoals}*/}
+          {/*  showCardDrawer={showCardDrawer}*/}
+          {/*/>*/}
         </div>
       </Layout>
     </>
