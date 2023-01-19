@@ -4,13 +4,14 @@ import type { ButtonInterface } from "../../../interfaces/interfaces";
 import Button from "./Button";
 
 const EditButton: FC<ButtonInterface> = ({
-  onlyIcon,
+  onlyIcon = false,
   children = "Edit",
   onClick,
   className,
 }) => {
   return (
     <Button
+      onlyIcon={onlyIcon}
       type={"button"}
       icon={<AiFillEdit size="1.5rem" />}
       onClick={onClick}
