@@ -8,6 +8,7 @@ const Button: FC<ButtonInterface> = ({
   icon,
   onClick,
   disabled,
+  onlyIcon,
 }) => {
   return (
     <button
@@ -16,7 +17,7 @@ const Button: FC<ButtonInterface> = ({
       type={type}
       disabled={disabled}
     >
-      <div className="flex items-center gap-2">
+      <div className={`flex items-center ${onlyIcon ? "gap-0" : "gap-2"}`}>
         {icon}
         <span>{children}</span>
       </div>
