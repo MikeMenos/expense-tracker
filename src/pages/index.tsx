@@ -27,7 +27,7 @@ const Home: NextPage = () => {
     <>
       <Layout>
         <div className="flex flex-col">
-          <h1 className="mb-4">Welcome to your Dashboard!</h1>
+          <h1 className="mb-10">Welcome to your Dashboard!</h1>
           <div className="flex flex-grow">
             <div className="w-1/2">
               <Overview />
