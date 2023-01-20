@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 import Router from "next/router";
 import Table from "../components/shared/Table/Table";
-import TableDrawer from "../components/shared/Table/TableDrawer";
+import AppDrawer from "../components/shared/AppDrawer";
 import type { Column, Row } from "react-table";
 import EditButton from "../components/shared/buttons/EditButton";
 import DeleteButton from "../components/shared/buttons/DeleteButton";
@@ -142,13 +142,13 @@ const Transactions: NextPage = () => {
           onAdd={onAdd}
           name="transactions-table"
         />
-        <TableDrawer show={show} onClose={onClose}>
+        <AppDrawer show={show} onClose={onClose}>
           <TransactionsForm
             record={record}
             setRecord={setRecord}
             createOrEdit={createOrEdit}
           />
-        </TableDrawer>
+        </AppDrawer>
       </div>
     </Layout>
   );

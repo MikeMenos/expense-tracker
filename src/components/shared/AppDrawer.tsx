@@ -1,11 +1,11 @@
 import { type FC } from "react";
 import Drawer from "react-modern-drawer";
-import type { ArionDrawerInterface } from "../../../interfaces/interfaces";
-import Button from "../buttons/Button";
+import type { ArionDrawerInterface } from "../../interfaces/interfaces";
+import Button from "./buttons/Button";
 import { AiOutlineClose } from "react-icons/ai";
 
-const TableDrawer: FC<ArionDrawerInterface> = (props) => {
-  const { children, show, onClose, className, style } = props;
+const AppDrawer: FC<ArionDrawerInterface> = (props) => {
+  const { children, show, onClose, className, style, width = "25%" } = props;
 
   return (
     <Drawer
@@ -13,7 +13,7 @@ const TableDrawer: FC<ArionDrawerInterface> = (props) => {
       onClose={onClose}
       open={show}
       className={className}
-      style={{ ...style, width: "20%" }}
+      style={{ ...style, width }}
     >
       <Button
         icon={
@@ -31,4 +31,4 @@ const TableDrawer: FC<ArionDrawerInterface> = (props) => {
   );
 };
 
-export default TableDrawer;
+export default AppDrawer;

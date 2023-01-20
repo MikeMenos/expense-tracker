@@ -4,7 +4,7 @@ import Layout from "../components/shared/Layout";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
 import Table from "../components/shared/Table/Table";
-import TableDrawer from "../components/shared/Table/TableDrawer";
+import TableDrawer from "../components/shared/AppDrawer";
 import { trpc } from "../utils/trpc";
 import type { Column, Row } from "react-table";
 import { useQueryClient } from "@tanstack/react-query";
