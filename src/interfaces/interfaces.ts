@@ -46,6 +46,7 @@ export interface ButtonInterface extends ChildrenType {
   icon?: JSX.Element;
   onlyIcon?: boolean;
   onlyText?: boolean;
+  size?: string;
 }
 
 export type MenuItem = {

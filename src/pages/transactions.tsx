@@ -18,7 +18,7 @@ import { ConvertTZToDateTime } from "../components/utilComponents/ConvertTZToDat
 const Transactions: NextPage = () => {
   const { status } = useSession();
   const queryClient = useQueryClient();
-  const [show, setShow] = useState<boolean>(false);
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [record, setRecord] = useState<Row["original"]>({});
 
   const { data, isFetching } = trpc.transaction.list.useQuery();
@@ -58,12 +58,12 @@ const Transactions: NextPage = () => {
   });
 
   const onAdd = () => {
-    setShow(true);
+    setShowDrawer(true);
   };
 
   const onEdit = (row: Row) => {
     setRecord(row.original);
-    setShow(true);
+    setShowDrawer(true);
   };
 
   const onDelete = (row: Row) => {
@@ -73,7 +73,7 @@ const Transactions: NextPage = () => {
   };
 
   const onClose = () => {
-    setShow(false);
+    setShowDrawer(false);
     setRecord({});
   };
 
@@ -142,7 +142,7 @@ const Transactions: NextPage = () => {
           onAdd={onAdd}
           name="transactions-table"
         />
-        <AppDrawer show={show} onClose={onClose}>
+        <AppDrawer show={showDrawer} onClose={onClose}>
           <TransactionsForm
             record={record}
             setRecord={setRecord}
