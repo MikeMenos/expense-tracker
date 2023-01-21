@@ -17,7 +17,7 @@ import CategoriesForm from "../components/Categories/CategoriesForm";
 const Categories: NextPage = () => {
   const { status } = useSession();
   const queryClient = useQueryClient();
-  const [show, setShow] = useState<boolean>(false);
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [record, setRecord] = useState<Row["original"]>({});
 
   const { data, isFetching } = trpc.category.list.useQuery();
@@ -57,12 +57,12 @@ const Categories: NextPage = () => {
   });
 
   const onAdd = () => {
-    setShow(true);
+    setShowDrawer(true);
   };
 
   const onEdit = (row: Row) => {
     setRecord(row.original);
-    setShow(true);
+    setShowDrawer(true);
   };
 
   const onDelete = (row: Row) => {
@@ -73,7 +73,7 @@ const Categories: NextPage = () => {
   };
 
   const onClose = () => {
-    setShow(false);
+    setShowDrawer(false);
     setRecord({});
   };
 
@@ -131,7 +131,7 @@ const Categories: NextPage = () => {
           onAdd={onAdd}
           name="categories-table"
         />
-        <TableDrawer show={show} onClose={onClose}>
+        <TableDrawer show={showDrawer} onClose={onClose}>
           <CategoriesForm
             record={record}
             setRecord={setRecord}

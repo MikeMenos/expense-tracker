@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 h1 {
   @apply text-3xl font-bold;
 }
@@ -12,6 +14,22 @@ h2 {
 
 body {
   @apply text-white;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: #353A8E;
+}
+
+::-webkit-scrollbar {
+  height: 10px;              /* height of horizontal scrollbar ← You're missing this */
+  width: 10px;               /* width of vertical scrollbar */
+  border: 1px solid #d5d5d5;
 }
 
 input:-webkit-autofill,

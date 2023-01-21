@@ -8,11 +8,12 @@ const DeleteButton: FC<ButtonInterface> = ({
   children = "Delete",
   onClick,
   className,
+  size = "1.5rem",
 }) => {
   return (
     <Button
       type={"button"}
-      icon={<AiFillDelete size="1.5rem" />}
+      icon={<AiFillDelete size={size} />}
       onClick={onClick}
       className={`${className} transition-scale duration-200 hover:scale-125`}
     >

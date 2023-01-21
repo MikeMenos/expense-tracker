@@ -7,13 +7,13 @@ import Loader from "../components/shared/Loader";
 import RecentTransactions from "../components/Transactions/RecentTransactions";
 import Goals from "../components/Goals/Goals";
 import Overview from "../components/Overview/Overview";
-
 import { GoalContext } from "../components/contexts/GoalContext";
 
 const Home: NextPage = () => {
   const { status } = useSession();
-  const [goals, setGoals] = useState<{ title: string; budget: number }[]>([]);
-  const [showGoalForm, setShowGoalForm] = useState(false);
+  const [goals, setGoals] = useState<{ title: string; budget: 0 }[]>([]);
+  const [showCardDrawer, setShowCardDrawer] = useState<boolean>(false);
+
   useEffect(() => {
     if (status === "unauthenticated") Router.replace("/signin");
   }, [status]);
@@ -28,10 +28,7 @@ const Home: NextPage = () => {
 
   return (
     <GoalContext.Provider
-      value={[
-        [goals, setGoals],
-        [showGoalForm, setShowGoalForm],
-      ]}
+      value={{ goals, setGoals, showCardDrawer, setShowCardDrawer }}
     >
       <Layout>
         <div className="flex flex-col">
@@ -45,12 +42,6 @@ const Home: NextPage = () => {
               <RecentTransactions />
             </div>
           </div>
-          {/*<GoalDrawer*/}
-          {/*  title={title}*/}
-          {/*  budget={budget}*/}
-          {/*  setGoals={setGoals}*/}
-          {/*  showCardDrawer={showCardDrawer}*/}
-          {/*/>*/}
         </div>
       </Layout>
     </GoalContext.Provider>

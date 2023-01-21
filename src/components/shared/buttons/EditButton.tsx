@@ -8,12 +8,13 @@ const EditButton: FC<ButtonInterface> = ({
   children = "Edit",
   onClick,
   className,
+  size = "1.5rem",
 }) => {
   return (
     <Button
       onlyIcon={onlyIcon}
       type={"button"}
-      icon={<AiFillEdit size="1.5rem" />}
+      icon={<AiFillEdit size={size} />}
       onClick={onClick}
       className={`${className} transition-scale duration-200 hover:scale-125`}
     >
