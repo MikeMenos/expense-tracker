@@ -7,12 +7,12 @@ export const goalsRouter = router({
     .input(goalSchema)
     .mutation(({ ctx, input }) => {
       const { prisma } = ctx;
-      const { title, budget, id } = input;
+      const { title, budget, id, gathered } = input;
 
       return prisma.goal.upsert({
         where: { id },
-        update: { title, budget },
-        create: { title, budget },
+        update: { title, budget, gathered },
+        create: { title, budget, gathered },
       });
     }),
 

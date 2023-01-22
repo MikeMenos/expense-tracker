@@ -63,7 +63,7 @@ const Goals = () => {
       <div className="rounded-xl bg-secondary px-10 py-8">
         <div className="flex items-center justify-between">
           <h2>Goals</h2>
-          <AddButton onlyIcon onClick={onAdd} />
+          <AddButton onlyIcon size="1.7rem" onClick={onAdd} />
         </div>
         {goals.length === 0 && (
           <p className="mt-4 text-center text-sm font-semibold">No Goals set</p>
@@ -73,10 +73,12 @@ const Goals = () => {
             ({
               title,
               budget,
+              gathered,
               id,
             }: {
               title: string;
               budget: number;
+              gathered: number;
               id: string;
             }) => (
               <GoalCard
@@ -84,6 +86,7 @@ const Goals = () => {
                 id={id}
                 title={title}
                 budget={budget}
+                gathered={gathered}
                 setRecord={setRecord}
                 setShowDrawer={setShowDrawer}
                 remove={remove}

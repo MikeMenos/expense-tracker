@@ -17,7 +17,6 @@ const Input: FC<InputInterface> = ({
     <div className="relative flex items-center">
       <i className="absolute pl-1">{icon}</i>
       {value && <i className="absolute right-0 pr-2">{closeIcon}</i>}
-
       <input
         type={type}
         name={name}
@@ -27,6 +26,7 @@ const Input: FC<InputInterface> = ({
         className={className}
         style={style}
         required={required}
+        min={0}
       />
     </div>
   );

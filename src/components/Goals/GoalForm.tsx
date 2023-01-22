@@ -9,14 +9,14 @@ interface PropsInterface {
 }
 
 const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
-  const { title, id = "", budget } = record as any;
+  const { title, id = "", budget, gathered } = record as any;
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name, type } = e.target as HTMLInputElement;
 
     if (type === "number") {
       setRecord((state) => ({
         ...state,
-        [name]: parseInt(value),
+        [name]: parseFloat(value),
       }));
     } else {
       setRecord((state) => ({
@@ -30,7 +30,7 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
     e.preventDefault();
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    createOrEdit({ title, id, budget });
+    createOrEdit({ title, id, budget, gathered });
   };
 
   return (
@@ -54,6 +54,17 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
           value={record?.budget ?? ""}
           type="number"
           name="budget"
+          required
+          onChange={onInputChange}
+          className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+        />
+        <Input
+          placeholder="Amount Gathered (€)"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          value={record?.gathered ?? ""}
+          type="number"
+          name="gathered"
           required
           onChange={onInputChange}
           className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"

@@ -10,12 +10,13 @@ const AddButton: FC<ButtonInterface> = ({
   children = "Add",
   onClick,
   className,
+  size = "1.5rem",
 }) => {
   return (
     <Button
       onlyIcon={onlyIcon}
       type={type}
-      icon={!onlyText ? <IoMdAddCircleOutline size="1.5rem" /> : undefined}
+      icon={!onlyText ? <IoMdAddCircleOutline size={size} /> : undefined}
       onClick={onClick}
       className={`${className} rounded-xl bg-green ${
         onlyIcon ? "px-2" : "px-4"

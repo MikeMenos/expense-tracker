@@ -78,6 +78,7 @@ model Goal {
   id        String    @id @default(cuid())
   title     String    @unique
   budget    Int
+  gathered  Int       @default(0)
 }
 
 
