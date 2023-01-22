@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { type FC, useState } from "react";
 import type { InputInterface } from "../../interfaces/interfaces";
 
 const Input: FC<InputInterface> = ({
@@ -13,21 +13,37 @@ const Input: FC<InputInterface> = ({
   required,
   closeIcon,
 }) => {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
   return (
     <div className="relative flex items-center">
       <i className="absolute pl-1">{icon}</i>
       {value && <i className="absolute right-0 pr-2">{closeIcon}</i>}
-      <input
-        type={type}
-        name={name}
-        placeholder={`${placeholder} ${required ? "*" : ""}`}
-        value={value}
-        onChange={onChange}
-        className={className}
-        style={style}
-        required={required}
-        min={0}
-      />
+      <div className="flex w-full flex-col">
+        <label
+          htmlFor={placeholder}
+          className={`absolute transition-all duration-500 ease-in-out ${
+            isFocused && !icon
+              ? "translate-y-2 opacity-100"
+              : "translate-y-6 opacity-0"
+          }`}
+        >
+          {placeholder} {required ? "*" : ""}
+        </label>
+
+        <input
+          type={type}
+          name={name}
+          placeholder={isFocused ? "" : placeholder}
+          value={value}
+          onChange={onChange}
+          className={className}
+          style={style}
+          required={required}
+          min={0}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+        />
+      </div>
     </div>
   );
 };

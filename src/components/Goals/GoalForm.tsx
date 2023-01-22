@@ -43,7 +43,7 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
           name="title"
           required
           onChange={onInputChange}
-          className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+          className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
         />
         <Input
           placeholder="Budget (€)"
@@ -53,7 +53,7 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
           name="budget"
           required
           onChange={onInputChange}
-          className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+          className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
         />
         <Input
           placeholder="Amount Gathered (€)"
@@ -63,7 +63,7 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
           name="gathered"
           required
           onChange={onInputChange}
-          className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+          className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
         />
       </div>
     </Form>

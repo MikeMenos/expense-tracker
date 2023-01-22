@@ -11,6 +11,7 @@ const CategoriesSelector: FC<SelectorPropsInterface> = ({
   onChange,
   required,
   placeholder,
+  className,
 }) => {
   const { data, isFetching } = trpc.category.list.useQuery();
 
@@ -20,6 +21,7 @@ const CategoriesSelector: FC<SelectorPropsInterface> = ({
 
   return (
     <ReactSelect
+      className={className}
       options={options}
       isLoading={isFetching}
       value={value}

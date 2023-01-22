@@ -94,4 +94,5 @@ export interface SelectorPropsInterface {
   onChange: any;
   placeholder?: string;
   required?: boolean;
+  className?: string;
 }

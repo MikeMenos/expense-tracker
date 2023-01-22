@@ -67,7 +67,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             value={record?.receiver ?? ""}
             type="text"
             onChange={onInputChange}
-            className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+            className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
             name="receiver"
             required
           />
@@ -92,6 +92,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             name="category"
             required
             placeholder="Select..."
+            className="mt-6"
           />
           <Input
             placeholder="Amount (€)"
@@ -99,7 +100,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             value={record?.amount ?? ""}
             type="number"
             onChange={onInputChange}
-            className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+            className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
             name="amount"
             required
           />
@@ -109,7 +110,7 @@ const TransactionsForm: FC<PropsInterface> = ({
             value={record?.createdAt ?? new Date()}
             type="date"
             onChange={onInputChange}
-            className="mt-6 w-full rounded-xl bg-secondary p-2 outline-none"
+            className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
             name="createdAt"
           />
         </div>
