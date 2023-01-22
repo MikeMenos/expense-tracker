@@ -1,6 +1,7 @@
 import Input from "../shared/Input";
 import type { Dispatch, FC, SetStateAction, SyntheticEvent } from "react";
 import Form from "../shared/Form";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 interface PropsInterface {
   record: object;
@@ -8,7 +9,7 @@ interface PropsInterface {
   createOrEdit: any;
 }
 
-const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
+const GoalsForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
   const { title, id = "", budget, gathered } = record as any;
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name, type } = e.target as HTMLInputElement;
@@ -29,7 +30,7 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     // @ts-ignore
-    createOrEdit({ title, id, budget, gathered });
+    createOrEdit({ title: capitalizeFirstLetter(title), id, budget, gathered });
   };
 
   return (
@@ -74,4 +75,4 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
   );
 };
 
-export default GoalForm;
+export default GoalsForm;

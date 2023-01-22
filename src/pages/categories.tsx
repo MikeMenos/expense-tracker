@@ -47,12 +47,8 @@ const Categories: NextPage = () => {
       onClose();
       queryClient.invalidateQueries();
     },
-    onError: ({ message }: { message: any }) => {
-      errorToast(
-        JSON.parse(message)
-          .map(({ message }: { message: string }) => message)
-          .toString()
-      );
+    onError: ({ message }) => {
+      errorToast(message);
     },
   });
 

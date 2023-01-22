@@ -8,6 +8,7 @@ import Form from "../shared/Form";
 import Input from "../shared/Input";
 import { type Row } from "react-table";
 import CategoriesSelector from "../shared/selectors/CategoriesSelector";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 interface PropsInterface {
   record: Row["original"];
@@ -54,7 +55,13 @@ const TransactionsForm: FC<PropsInterface> = ({
 
     // @ts-ignore
     const category = record?.category?.value || record?.category;
-    createOrEdit({ receiver, id, category, amount, createdAt });
+    createOrEdit({
+      receiver: capitalizeFirstLetter(receiver),
+      id,
+      category,
+      amount,
+      createdAt,
+    });
   };
 
   return (

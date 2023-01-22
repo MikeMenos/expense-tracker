@@ -7,6 +7,7 @@ import {
 import Form from "../shared/Form";
 import Input from "../shared/Input";
 import { type Row } from "react-table";
+import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 
 interface PropsInterface {
   record: Row["original"];
@@ -34,7 +35,10 @@ const CategoriesForm: FC<PropsInterface> = ({
     e.preventDefault();
 
     // @ts-ignore
-    createOrEdit({ name, id });
+    createOrEdit({
+      name: capitalizeFirstLetter(name),
+      id,
+    });
   };
   return (
     <>

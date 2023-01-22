@@ -1,7 +1,7 @@
 import { useState } from "react";
 import AddButton from "../shared/buttons/AddButton";
 import GoalCard from "./GoalCard";
-import GoalForm from "./GoalForm";
+import GoalsForm from "./GoalsForm";
 import AppDrawer from "../shared/AppDrawer";
 import { trpc } from "../../utils/trpc";
 import { errorToast, successToast } from "../shared/toast/toasts";
@@ -92,7 +92,7 @@ const Goals = () => {
         </div>
       </div>
       <AppDrawer show={showDrawer} onClose={onClose}>
-        <GoalForm
+        <GoalsForm
           createOrEdit={createOrEdit}
           record={record}
           setRecord={setRecord}

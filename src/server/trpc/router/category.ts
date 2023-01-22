@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { categorySchema } from "../../../zodSchemas/categorySchema";
 import { router, protectedProcedure } from "../trpc";
 import { z } from "zod";
@@ -5,9 +6,23 @@ import { z } from "zod";
 export const categoryRouter = router({
   createOrEdit: protectedProcedure
     .input(categorySchema)
-    .mutation(({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
       const { prisma } = ctx;
       const { name, id } = input;
+
+      const duplicateCategoryNameExists = await prisma.category.findUnique({
+        where: {
+          // @ts-ignore
+          name,
+        },
+      });
+
+      if (!id && duplicateCategoryNameExists) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Category name already exists",
+        });
+      }
 
       return prisma.category.upsert({
         where: { id },
