@@ -20,7 +20,6 @@ const TransactionsForm: FC<PropsInterface> = ({
   setRecord,
   createOrEdit,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { receiver, id = "", amount, createdAt = new Date() } = record;
 
@@ -52,7 +51,7 @@ const TransactionsForm: FC<PropsInterface> = ({
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore
     const category = record?.category?.value || record?.category;
     createOrEdit({ receiver, id, category, amount, createdAt });
@@ -64,7 +63,6 @@ const TransactionsForm: FC<PropsInterface> = ({
         <div className="mt-20 w-full">
           <Input
             placeholder="Receiver"
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             value={record?.receiver ?? ""}
             type="text"
@@ -75,20 +73,16 @@ const TransactionsForm: FC<PropsInterface> = ({
           />
           <CategoriesSelector
             value={
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               typeof record?.category === "object"
-                ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
+                ? // @ts-ignore
                   record?.category
-                : // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
+                : // @ts-ignore
                 typeof record?.category === "string" && record?.category
                 ? {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     label: record?.category,
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
                     // @ts-ignore
                     value: record?.category,
                   }
@@ -101,7 +95,6 @@ const TransactionsForm: FC<PropsInterface> = ({
           />
           <Input
             placeholder="Amount (€)"
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             value={record?.amount ?? ""}
             type="number"
@@ -112,7 +105,6 @@ const TransactionsForm: FC<PropsInterface> = ({
           />
           <Input
             placeholder="Date"
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             value={record?.createdAt ?? new Date()}
             type="date"

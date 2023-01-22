@@ -28,7 +28,6 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     createOrEdit({ title, id, budget, gathered });
   };
@@ -38,7 +37,6 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
       <div className="mt-20 w-full">
         <Input
           placeholder="Goal Title"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           value={record?.title ?? ""}
           type="text"
@@ -49,7 +47,6 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
         />
         <Input
           placeholder="Budget (€)"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           value={record?.budget ?? ""}
           type="number"
@@ -60,7 +57,6 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
         />
         <Input
           placeholder="Amount Gathered (€)"
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           value={record?.gathered ?? ""}
           type="number"

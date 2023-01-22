@@ -66,7 +66,6 @@ const Categories: NextPage = () => {
   };
 
   const onDelete = (row: Row) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     // modalToast(remove);
     void remove({ id: row.original.id });
@@ -124,7 +123,6 @@ const Categories: NextPage = () => {
           Manage your expense categories
         </h3>
         <Table
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           columns={columns}
           data={categories}

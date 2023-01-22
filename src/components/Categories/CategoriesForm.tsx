@@ -19,7 +19,6 @@ const CategoriesForm: FC<PropsInterface> = ({
   setRecord,
   createOrEdit,
 }) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { name, id = "" } = record;
 
@@ -33,7 +32,7 @@ const CategoriesForm: FC<PropsInterface> = ({
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
     // @ts-ignore
     createOrEdit({ name, id });
   };
@@ -43,7 +42,6 @@ const CategoriesForm: FC<PropsInterface> = ({
         <div className="mt-20 w-full">
           <Input
             placeholder="Category"
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             value={record?.name ?? ""}
             type="text"
