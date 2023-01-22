@@ -9,9 +9,11 @@ const EditButton: FC<ButtonInterface> = ({
   onClick,
   className,
   size = "1.5rem",
+  disabled = false,
 }) => {
   return (
     <Button
+      disabled={disabled}
       onlyIcon={onlyIcon}
       type={"button"}
       icon={<AiFillEdit size={size} />}

@@ -6,6 +6,7 @@ interface PropsInterface extends ChildrenType {
   className?: string;
   onSubmit?: (e: SyntheticEvent) => void;
   submitBtnVisible?: boolean;
+  disabled?: boolean;
 }
 
 const Form: FC<PropsInterface> = ({
@@ -13,12 +14,14 @@ const Form: FC<PropsInterface> = ({
   className,
   onSubmit,
   submitBtnVisible = true,
+  disabled,
 }) => {
   return (
     <form onSubmit={onSubmit} className={className}>
       {children}
       {submitBtnVisible && (
         <AddButton
+          disabled={disabled}
           onlyText
           type="submit"
           className="text-md ml-auto mr-6 mt-12"

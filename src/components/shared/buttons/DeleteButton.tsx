@@ -9,9 +9,11 @@ const DeleteButton: FC<ButtonInterface> = ({
   onClick,
   className,
   size = "1.5rem",
+  disabled = false,
 }) => {
   return (
     <Button
+      disabled={disabled}
       type={"button"}
       icon={<AiFillDelete size={size} />}
       onClick={onClick}

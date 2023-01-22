@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { router, protectedProcedure } from "../trpc";
 import { z } from "zod";
 import { goalSchema } from "../../../zodSchemas/goalSchema";
@@ -8,6 +9,13 @@ export const goalsRouter = router({
     .mutation(({ ctx, input }) => {
       const { prisma } = ctx;
       const { title, budget, id, gathered } = input;
+
+      if (gathered > budget) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Gathered amount cannot be higher than the Budget amount",
+        });
+      }
 
       return prisma.goal.upsert({
         where: { id },

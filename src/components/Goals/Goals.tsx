@@ -23,11 +23,7 @@ const Goals = () => {
       queryClient.invalidateQueries();
     },
     onError: ({ message }) => {
-      errorToast(
-        JSON.parse(message)
-          .map(({ message }: { message: string }) => message)
-          .toString()
-      );
+      errorToast(message);
     },
   });
 

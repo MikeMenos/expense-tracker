@@ -33,7 +33,11 @@ const GoalForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="drawer-form w-full">
+    <Form
+      onSubmit={handleSubmit}
+      className="drawer-form w-full"
+      // disabled={gathered > budget}
+    >
       <div className="mt-20 w-full">
         <Input
           placeholder="Goal Title"
