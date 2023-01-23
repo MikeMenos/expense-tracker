@@ -74,7 +74,10 @@ function Table<T extends object>({
               prepareRow(row);
 
               return (
-                <tr {...row.getRowProps()} key={i}>
+                <tr
+                  {...row.getRowProps({ className: "hover:bg-secondary" })}
+                  key={i}
+                >
                   {row.cells.map((cell, x) => {
                     return (
                       <td
