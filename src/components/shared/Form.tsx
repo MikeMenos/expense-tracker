@@ -1,4 +1,4 @@
-import { Dispatch, type FC, SetStateAction, type SyntheticEvent } from "react";
+import { type FC, type SyntheticEvent } from "react";
 import { type ChildrenType } from "../../interfaces/interfaces";
 import AddButton from "./buttons/AddButton";
 import CancelButton from "./buttons/CancelButton";
@@ -6,7 +6,7 @@ import CancelButton from "./buttons/CancelButton";
 interface PropsInterface extends ChildrenType {
   className?: string;
   onSubmit?: (e: SyntheticEvent) => void;
-  setShowDrawer: Dispatch<SetStateAction<boolean>>;
+  onClose: VoidFunction;
   submitBtnVisible?: boolean;
   disabled?: boolean;
 }
@@ -17,17 +17,14 @@ const Form: FC<PropsInterface> = ({
   onSubmit,
   submitBtnVisible = true,
   disabled,
-  setShowDrawer,
+  onClose,
 }) => {
-  const onCancel = () => {
-    setShowDrawer(false);
-  };
   return (
     <form onSubmit={onSubmit} className={className}>
       {children}
       {submitBtnVisible && (
         <div className="flex w-full justify-end">
-          <CancelButton className="text-md mr-4 mt-12" onClick={onCancel} />
+          <CancelButton className="text-md mr-4 mt-12" onClick={onClose} />
           <AddButton
             disabled={disabled}
             onlyText

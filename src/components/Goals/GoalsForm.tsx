@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 interface PropsInterface {
   record: object;
   setRecord: Dispatch<SetStateAction<object>>;
-  setShowDrawer: Dispatch<SetStateAction<boolean>>;
+  onClose: VoidFunction;
   createOrEdit: any;
 }
 
@@ -14,7 +14,7 @@ const GoalsForm: FC<PropsInterface> = ({
   record,
   setRecord,
   createOrEdit,
-  setShowDrawer,
+  onClose,
 }) => {
   const { title, id = "", budget, gathered } = record as any;
   const onInputChange = (e: SyntheticEvent) => {
@@ -40,11 +40,7 @@ const GoalsForm: FC<PropsInterface> = ({
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      className="drawer-form"
-      setShowDrawer={setShowDrawer}
-    >
+    <Form onSubmit={handleSubmit} className="drawer-form" onClose={onClose}>
       <div className="mt-20 w-full">
         <Input
           placeholder="Goal Title"

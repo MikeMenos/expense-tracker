@@ -130,7 +130,7 @@ const Categories: NextPage = () => {
             record={record}
             setRecord={setRecord}
             createOrEdit={createOrEdit}
-            setShowDrawer={setShowDrawer}
+            onClose={onClose}
           />
         </TableDrawer>
       </div>
