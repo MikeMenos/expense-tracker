@@ -13,8 +13,8 @@ const selectorStyles = () => {
     valueContainer: (baseStyles: CSSObjectWithLabel) => ({
       ...baseStyles,
       backgroundColor: "#192439",
-      borderBottomLeftRadius: "0.375rem",
-      borderTopLeftRadius: "0.375rem",
+      borderBottomLeftRadius: "0.75rem",
+      borderTopLeftRadius: "0.75rem",
     }),
     indicatorsContainer: (baseStyles: CSSObjectWithLabel) => ({
       ...baseStyles,

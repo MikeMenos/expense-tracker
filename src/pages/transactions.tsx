@@ -146,6 +146,7 @@ const Transactions: NextPage = () => {
             record={record}
             setRecord={setRecord}
             createOrEdit={createOrEdit}
+            onClose={onClose}
           />
         </AppDrawer>
       </div>

@@ -96,6 +96,7 @@ const Goals = () => {
           createOrEdit={createOrEdit}
           record={record}
           setRecord={setRecord}
+          onClose={onClose}
         />
       </AppDrawer>
     </>
