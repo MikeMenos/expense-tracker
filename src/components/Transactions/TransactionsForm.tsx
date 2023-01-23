@@ -9,6 +9,7 @@ import Input from "../shared/Input";
 import { type Row } from "react-table";
 import CategoriesSelector from "../shared/selectors/CategoriesSelector";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import { convertTZToDateTimeValue } from "../../utils/convertTZToDateTimeValue";
 
 interface PropsInterface {
   record: Row["original"];
@@ -115,8 +116,8 @@ const TransactionsForm: FC<PropsInterface> = ({
         <Input
           placeholder="Date"
           // @ts-ignore
-          value={record?.createdAt ?? new Date()}
-          type="date"
+          value={convertTZToDateTimeValue(record?.createdAt) ?? ""}
+          type="text"
           onChange={onInputChange}
           className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
           name="createdAt"

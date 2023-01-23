@@ -1,4 +1,4 @@
-import { type FC, useState } from "react";
+import { type FC, useState, type FocusEvent } from "react";
 import type { InputInterface } from "../../interfaces/interfaces";
 
 const Input: FC<InputInterface> = ({
@@ -16,6 +16,16 @@ const Input: FC<InputInterface> = ({
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const formattedPlaceholder = required ? placeholder + "*" : placeholder;
+
+  const setFocusedToTrue = (e: FocusEvent<HTMLInputElement>) => {
+    setIsFocused(true);
+    if (placeholder === "Date") e.target.type = "date";
+  };
+
+  const setFocusedToFalse = (e: FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
+    if (placeholder === "Date") e.target.type = "text";
+  };
 
   return (
     <div className="relative flex items-center pb-4">
@@ -43,8 +53,9 @@ const Input: FC<InputInterface> = ({
           style={style}
           required={required}
           min={0}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={(e) => setFocusedToTrue(e)}
+          onBlur={(e) => setFocusedToFalse(e)}
+          defaultValue=""
         />
       </div>
     </div>
