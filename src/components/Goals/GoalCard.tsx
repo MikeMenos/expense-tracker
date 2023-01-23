@@ -35,7 +35,10 @@ const GoalCard: FC<PropsInterface> = ({
   const height = ((gathered / budget) * 100 * 150) / 100;
 
   return (
-    <div className="relative mb-4 mt-8 flex h-[195px] min-w-[250px] flex-col justify-between rounded-xl bg-main shadow-xl">
+    <div
+      style={{ boxShadow: "10px 10px 10px rgba(0,0,0,0.4)" }}
+      className="relative mb-4 mt-8 flex h-[195px] min-w-[250px] flex-col justify-between rounded-xl bg-main"
+    >
       <div className="flex items-center justify-between rounded-t-xl bg-purple px-4 py-2">
         <p className="text-lg font-semibold">{title}</p>
         <div className="flex gap-4">

@@ -12,6 +12,7 @@ import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 interface PropsInterface {
   record: Row["original"];
   setRecord: Dispatch<SetStateAction<object>>;
+  setShowDrawer: Dispatch<SetStateAction<boolean>>;
   createOrEdit?: any;
 }
 
@@ -19,6 +20,7 @@ const CategoriesForm: FC<PropsInterface> = ({
   record,
   setRecord,
   createOrEdit,
+  setShowDrawer,
 }) => {
   // @ts-ignore
   const { name, id = "" } = record;
@@ -42,7 +44,11 @@ const CategoriesForm: FC<PropsInterface> = ({
   };
   return (
     <>
-      <Form onSubmit={handleSubmit} className="drawer-form">
+      <Form
+        onSubmit={handleSubmit}
+        className="drawer-form"
+        setShowDrawer={setShowDrawer}
+      >
         <div className="mt-20 w-full">
           <Input
             placeholder="Category"

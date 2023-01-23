@@ -6,10 +6,16 @@ import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
 interface PropsInterface {
   record: object;
   setRecord: Dispatch<SetStateAction<object>>;
+  setShowDrawer: Dispatch<SetStateAction<boolean>>;
   createOrEdit: any;
 }
 
-const GoalsForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
+const GoalsForm: FC<PropsInterface> = ({
+  record,
+  setRecord,
+  createOrEdit,
+  setShowDrawer,
+}) => {
   const { title, id = "", budget, gathered } = record as any;
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name, type } = e.target as HTMLInputElement;
@@ -36,8 +42,8 @@ const GoalsForm: FC<PropsInterface> = ({ record, setRecord, createOrEdit }) => {
   return (
     <Form
       onSubmit={handleSubmit}
-      className="drawer-form w-full"
-      // disabled={gathered > budget}
+      className="drawer-form"
+      setShowDrawer={setShowDrawer}
     >
       <div className="mt-20 w-full">
         <Input
