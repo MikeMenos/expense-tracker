@@ -9,7 +9,7 @@ import Input from "../shared/Input";
 import { type Row } from "react-table";
 import CategoriesSelector from "../shared/selectors/CategoriesSelector";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
-import { convertTZToDateTimeValue } from "../../utils/convertTZToDateTimeValue";
+import DateInput from "../shared/DateInput";
 
 interface PropsInterface {
   record: Row["original"];
@@ -43,7 +43,7 @@ const TransactionsForm: FC<PropsInterface> = ({
     if (type === "number") {
       setRecord((state) => ({
         ...state,
-        [name]: parseInt(value),
+        [name]: !value || value === "0" ? "" : parseInt(value),
       }));
     } else {
       setRecord((state) => ({
@@ -51,6 +51,13 @@ const TransactionsForm: FC<PropsInterface> = ({
         [name]: value,
       }));
     }
+  };
+
+  const onDateChange = (newDate: Date) => {
+    setRecord((state) => ({
+      ...state,
+      createdAt: newDate,
+    }));
   };
 
   const handleSubmit = async (e: SyntheticEvent) => {
@@ -113,13 +120,13 @@ const TransactionsForm: FC<PropsInterface> = ({
           name="amount"
           required
         />
-        <Input
-          placeholder="Date"
+        <DateInput
           // @ts-ignore
-          value={convertTZToDateTimeValue(record?.createdAt) ?? ""}
-          type="text"
-          onChange={onInputChange}
+          onChange={onDateChange}
+          // @ts-ignore
+          value={record?.createdAt ?? ""}
           className="mt-10 w-full rounded-xl bg-secondary p-2 outline-none"
+          placeholder="Date (MM/DD/YYYY)"
           name="createdAt"
         />
       </div>
