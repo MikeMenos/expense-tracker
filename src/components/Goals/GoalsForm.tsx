@@ -23,7 +23,7 @@ const GoalsForm: FC<PropsInterface> = ({
     if (type === "number") {
       setRecord((state) => ({
         ...state,
-        [name]: parseFloat(value),
+        [name]: !value || value === "0" ? "" : parseInt(value),
       }));
     } else {
       setRecord((state) => ({
