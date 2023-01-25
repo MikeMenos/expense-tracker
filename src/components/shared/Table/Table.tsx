@@ -1,6 +1,7 @@
 import { type ReactElement, type ChangeEvent, useState } from "react";
-import { useTable, useGlobalFilter } from "react-table";
+import { useTable, useGlobalFilter, usePagination } from "react-table";
 import type { TableProps } from "../../../interfaces/interfaces";
+import Pagination from "./Pagination";
 import ToolBar from "./Toolbar";
 
 function Table<T extends object>({
@@ -8,23 +9,35 @@ function Table<T extends object>({
   data,
   toolbarEnabled = true,
   onAdd,
+  dataSliced = false,
 }: TableProps<T>): ReactElement {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
     prepareRow,
     setGlobalFilter,
+    canPreviousPage,
+    canNextPage,
+    gotoPage,
+    pageOptions,
+    pageCount,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
   } = useTable<T>(
     {
       columns,
       data,
       initialState: {
         hiddenColumns: ["id"],
+        pageIndex: 0,
       },
     },
-    useGlobalFilter
+    useGlobalFilter,
+    usePagination
   );
 
   const [filterValue, setFilterValue] = useState<string>("");
@@ -70,7 +83,7 @@ function Table<T extends object>({
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {rows.map((row, i) => {
+            {page.map((row, i) => {
               prepareRow(row);
 
               return (
@@ -98,6 +111,22 @@ function Table<T extends object>({
             })}
           </tbody>
         </table>
+
+        {!dataSliced && (
+          <Pagination
+            canPreviousPage={canPreviousPage}
+            canNextPage={canNextPage}
+            gotoPage={gotoPage}
+            pageOptions={pageOptions}
+            pageCount={pageCount}
+            nextPage={nextPage}
+            previousPage={previousPage}
+            pageSize={pageSize}
+            setPageSize={setPageSize}
+            pageIndex={pageIndex}
+            dataLength={data.length}
+          />
+        )}
       </div>
       {data.length === 0 && (
         <div className="mt-40 text-center text-xl font-semibold">

@@ -50,6 +50,7 @@ const RecentTransactions = () => {
         columns={columns}
         data={transactions}
         name="transactions-table"
+        dataSliced
       />
       <div className="group mt-8 ml-auto flex w-28 cursor-pointer items-center justify-end rounded-xl border p-1">
         <Link

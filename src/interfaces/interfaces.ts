@@ -63,6 +63,7 @@ export interface TableProps<T extends object> {
   onClick?: (row: Row<T>) => void;
   style?: CSSProperties;
   toolbarEnabled?: boolean;
+  dataSliced?: boolean;
 }
 
 export interface TableToolbarProps<T extends Record<string, unknown>> {
@@ -95,4 +96,18 @@ export interface SelectorPropsInterface {
   placeholder?: string;
   required?: boolean;
   className?: string;
+}
+
+export interface PaginationPropsInterface {
+  canPreviousPage: boolean;
+  canNextPage: boolean;
+  gotoPage: (updater: number | ((pageIndex: number) => number)) => void;
+  pageOptions: number[];
+  pageCount: number;
+  nextPage: VoidFunction;
+  previousPage: VoidFunction;
+  setPageSize: (pageSize: number) => void;
+  pageIndex: number;
+  pageSize: number;
+  dataLength: number;
 }
