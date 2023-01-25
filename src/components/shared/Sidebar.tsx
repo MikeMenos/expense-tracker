@@ -76,7 +76,7 @@ const Sidebar: FC = () => {
         width="250px"
       >
         <div className="mt-12">
-          <div className="flex flex-col items-center">
+          <div className="flex min-h-[150px] flex-col items-center">
             <Image
               src={session?.user?.image ?? ""}
               alt="Profile Image"
