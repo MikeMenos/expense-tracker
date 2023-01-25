@@ -18,7 +18,6 @@ function Toolbar<T extends Record<string, unknown>>({
     setGlobalFilter("");
   };
 
-  // toolbar with add, edit, delete, filter/search column select.
   return (
     <>
       <div className="flex items-center justify-between gap-4">

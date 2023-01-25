@@ -111,27 +111,26 @@ function Table<T extends object>({
             })}
           </tbody>
         </table>
-
-        {!dataSliced && (
-          <Pagination
-            canPreviousPage={canPreviousPage}
-            canNextPage={canNextPage}
-            gotoPage={gotoPage}
-            pageOptions={pageOptions}
-            pageCount={pageCount}
-            nextPage={nextPage}
-            previousPage={previousPage}
-            pageSize={pageSize}
-            setPageSize={setPageSize}
-            pageIndex={pageIndex}
-            dataLength={data.length}
-          />
-        )}
       </div>
       {data.length === 0 && (
-        <div className="mt-40 text-center text-xl font-semibold">
-          NO DATA AVAILABLE
+        <div className="my-40 text-center text-xl font-semibold">
+          No Data Available
         </div>
+      )}
+      {!dataSliced && (
+        <Pagination
+          canPreviousPage={canPreviousPage}
+          canNextPage={canNextPage}
+          gotoPage={gotoPage}
+          pageOptions={pageOptions}
+          pageCount={pageCount}
+          nextPage={nextPage}
+          previousPage={previousPage}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+          pageIndex={pageIndex}
+          dataLength={data.length}
+        />
       )}
     </>
   );
