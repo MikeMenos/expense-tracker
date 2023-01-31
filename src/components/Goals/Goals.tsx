@@ -16,27 +16,31 @@ const Goals = () => {
 
   const goals = data?.goals.flatMap((title) => title) ?? [];
 
-  const { mutate: createOrEdit } = trpc.goal.createOrEdit.useMutation({
-    onSuccess: ({ id }) => {
-      successToast(`Goal was ${id !== "" ? "updated" : "added"} successfully!`);
-      onClose();
-      queryClient.invalidateQueries();
-    },
-    onError: ({ message }) => {
-      errorToast(message);
-    },
-  });
+  const { mutate: remove, isLoading: isRemoveLoading } =
+    trpc.goal.delete.useMutation({
+      onSuccess: () => {
+        void queryClient.invalidateQueries().then(() => {
+          successToast(`Goal was deleted successfully!`);
+        });
+      },
+      onError: () => {
+        errorToast("Oops, something went wrong!");
+      },
+    });
 
-  const { mutate: remove } = trpc.goal.delete.useMutation({
-    onSuccess: () => {
-      void queryClient.invalidateQueries().then(() => {
-        successToast(`Goal was deleted successfully!`);
-      });
-    },
-    onError: () => {
-      errorToast("Oops, something went wrong!");
-    },
-  });
+  const { mutate: createOrEdit, isLoading: isCreateOrEditLoading } =
+    trpc.goal.createOrEdit.useMutation({
+      onSuccess: ({ id }) => {
+        successToast(
+          `Goal was ${id !== "" ? "updated" : "added"} successfully!`
+        );
+        onClose();
+        queryClient.invalidateQueries();
+      },
+      onError: ({ message }) => {
+        errorToast(message);
+      },
+    });
 
   const onAdd = () => {
     setShowDrawer(true);
@@ -97,6 +101,7 @@ const Goals = () => {
           record={record}
           setRecord={setRecord}
           onClose={onClose}
+          isLoading={isRemoveLoading || isCreateOrEditLoading}
         />
       </AppDrawer>
     </>

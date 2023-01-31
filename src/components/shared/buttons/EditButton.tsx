@@ -10,10 +10,12 @@ const EditButton: FC<ButtonInterface> = ({
   className,
   size = "1.5rem",
   disabled = false,
+  loading,
 }) => {
   return (
     <Button
-      disabled={disabled}
+      loading={loading}
+      disabled={disabled || loading}
       onlyIcon={onlyIcon}
       type={"button"}
       icon={<AiFillEdit size={size} />}

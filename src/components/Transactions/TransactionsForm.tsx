@@ -16,6 +16,7 @@ interface PropsInterface {
   setRecord: Dispatch<SetStateAction<object>>;
   onClose: VoidFunction;
   createOrEdit?: any;
+  isLoading?: boolean;
 }
 
 const TransactionsForm: FC<PropsInterface> = ({
@@ -23,6 +24,7 @@ const TransactionsForm: FC<PropsInterface> = ({
   setRecord,
   createOrEdit,
   onClose,
+  isLoading,
 }) => {
   // @ts-ignore
   const { receiver, id = "", amount, createdAt = new Date() } = record;
@@ -75,7 +77,12 @@ const TransactionsForm: FC<PropsInterface> = ({
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="drawer-form" onClose={onClose}>
+    <Form
+      onSubmit={handleSubmit}
+      className="drawer-form"
+      onClose={onClose}
+      isLoading={isLoading}
+    >
       <div className="mt-20 w-full">
         <Input
           placeholder="Receiver"
