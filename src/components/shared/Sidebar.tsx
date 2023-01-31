@@ -3,7 +3,6 @@ import {
   Sidebar as SidebarWrapper,
   Menu,
   MenuItem,
-  useProSidebar,
   sidebarClasses,
 } from "react-pro-sidebar";
 import Button from "./buttons/Button";
@@ -53,8 +52,14 @@ export const menuItems: MenuItemInterface[] = [
   },
 ];
 
-const Sidebar: FC = () => {
-  const { collapseSidebar, collapsed } = useProSidebar();
+// @ts-ignore
+const Sidebar: FC = ({
+  collapseSidebarFunc,
+  collapsed,
+}: {
+  collapseSidebarFunc: VoidFunction;
+  collapsed: boolean;
+}) => {
   const { data: session } = useSession();
   const router = useRouter();
   const { title } = useGetPageTitle(router.pathname);
@@ -63,7 +68,7 @@ const Sidebar: FC = () => {
     if (title === menuText) return true;
   };
   return (
-    <div className="relative flex h-[100vh] ">
+    <div className="fixed flex min-h-[100vh]">
       <SidebarWrapper
         rootStyles={{
           [`.${sidebarClasses.container}`]: {
@@ -73,7 +78,6 @@ const Sidebar: FC = () => {
             backgroundColor: "#192439",
           },
         }}
-        width="250px"
       >
         <div className="mt-12">
           <div className="flex min-h-[150px] flex-col items-center">
@@ -124,7 +128,7 @@ const Sidebar: FC = () => {
       </SidebarWrapper>
 
       <div className="absolute right-0 z-20">
-        <Button onClick={() => collapseSidebar()}>
+        <Button onClick={() => collapseSidebarFunc()}>
           {!collapsed ? (
             <TbLayoutSidebarLeftCollapse size="1.6em" />
           ) : (
