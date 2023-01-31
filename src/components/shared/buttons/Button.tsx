@@ -11,7 +11,6 @@ const Button: FC<ButtonInterface> = ({
   onlyIcon,
   loading,
 }) => {
-  console.log(disabled);
   return (
     <button
       onClick={onClick}
