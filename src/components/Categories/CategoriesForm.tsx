@@ -14,6 +14,7 @@ interface PropsInterface {
   setRecord: Dispatch<SetStateAction<object>>;
   onClose: VoidFunction;
   createOrEdit?: any;
+  isLoading?: boolean;
 }
 
 const CategoriesForm: FC<PropsInterface> = ({
@@ -21,6 +22,7 @@ const CategoriesForm: FC<PropsInterface> = ({
   setRecord,
   createOrEdit,
   onClose,
+  isLoading,
 }) => {
   // @ts-ignore
   const { name, id = "" } = record;
@@ -44,7 +46,12 @@ const CategoriesForm: FC<PropsInterface> = ({
   };
   return (
     <>
-      <Form onSubmit={handleSubmit} className="drawer-form" onClose={onClose}>
+      <Form
+        onSubmit={handleSubmit}
+        className="drawer-form"
+        onClose={onClose}
+        isLoading={isLoading}
+      >
         <div className="mt-20 w-full">
           <Input
             placeholder="Category"

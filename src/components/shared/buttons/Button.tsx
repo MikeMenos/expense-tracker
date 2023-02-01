@@ -9,14 +9,15 @@ const Button: FC<ButtonInterface> = ({
   onClick,
   disabled,
   onlyIcon,
+  loading,
 }) => {
   return (
     <button
       onClick={onClick}
       className={className}
       type={type}
-      disabled={disabled}
-      style={{ cursor: disabled ? "not-allowed" : "pointer" }}
+      disabled={disabled || loading}
+      style={{ cursor: disabled || loading ? "not-allowed" : "pointer" }}
     >
       <div className={`flex items-center ${onlyIcon ? "gap-0" : "gap-2"}`}>
         {icon}

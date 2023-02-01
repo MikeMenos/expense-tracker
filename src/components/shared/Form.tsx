@@ -9,6 +9,7 @@ interface PropsInterface extends ChildrenType {
   onClose: VoidFunction;
   submitBtnVisible?: boolean;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 const Form: FC<PropsInterface> = ({
@@ -18,6 +19,7 @@ const Form: FC<PropsInterface> = ({
   submitBtnVisible = true,
   disabled,
   onClose,
+  isLoading,
 }) => {
   return (
     <form onSubmit={onSubmit} className={className}>
@@ -30,8 +32,9 @@ const Form: FC<PropsInterface> = ({
             onlyText
             type="submit"
             className="text-md mr-6 mt-12"
+            loading={isLoading}
           >
-            Confirm
+            {isLoading ? "Loading..." : "Confirm"}
           </AddButton>
         </div>
       )}

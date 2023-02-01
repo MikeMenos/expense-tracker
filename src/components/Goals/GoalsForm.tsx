@@ -8,6 +8,7 @@ interface PropsInterface {
   setRecord: Dispatch<SetStateAction<object>>;
   onClose: VoidFunction;
   createOrEdit: any;
+  isLoading?: boolean;
 }
 
 const GoalsForm: FC<PropsInterface> = ({
@@ -15,6 +16,7 @@ const GoalsForm: FC<PropsInterface> = ({
   setRecord,
   createOrEdit,
   onClose,
+  isLoading,
 }) => {
   const { title, id = "", budget, gathered } = record as any;
   const onInputChange = (e: SyntheticEvent) => {
@@ -40,7 +42,12 @@ const GoalsForm: FC<PropsInterface> = ({
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="drawer-form" onClose={onClose}>
+    <Form
+      onSubmit={handleSubmit}
+      className="drawer-form"
+      onClose={onClose}
+      isLoading={isLoading}
+    >
       <div className="mt-20 w-full">
         <Input
           placeholder="Goal Title"

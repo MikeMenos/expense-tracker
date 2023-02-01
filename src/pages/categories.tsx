@@ -28,29 +28,31 @@ const Categories: NextPage = () => {
     if (status === "unauthenticated") void Router.replace("/signin");
   }, [status]);
 
-  const { mutate: remove } = trpc.category.delete.useMutation({
-    onSuccess: ({ name }: { name: string }) => {
-      void queryClient.invalidateQueries().then(() => {
-        successToast(`${name} was deleted successfully!`);
-      });
-    },
-    onError: () => {
-      errorToast("Oops, something went wrong!");
-    },
-  });
+  const { mutate: remove, isLoading: isRemoveLoading } =
+    trpc.category.delete.useMutation({
+      onSuccess: ({ name }: { name: string }) => {
+        void queryClient.invalidateQueries().then(() => {
+          successToast(`${name} was deleted successfully!`);
+        });
+      },
+      onError: () => {
+        errorToast("Oops, something went wrong!");
+      },
+    });
 
-  const { mutate: createOrEdit } = trpc.category.createOrEdit.useMutation({
-    onSuccess: ({ id }: { id: string }) => {
-      successToast(
-        `Category was ${id !== "" ? "updated" : "added"} successfully!`
-      );
-      onClose();
-      queryClient.invalidateQueries();
-    },
-    onError: ({ message }) => {
-      errorToast(message);
-    },
-  });
+  const { mutate: createOrEdit, isLoading: isCreateOrEditLoading } =
+    trpc.category.createOrEdit.useMutation({
+      onSuccess: ({ id }: { id: string }) => {
+        successToast(
+          `Category was ${id !== "" ? "updated" : "added"} successfully!`
+        );
+        onClose();
+        queryClient.invalidateQueries();
+      },
+      onError: ({ message }) => {
+        errorToast(message);
+      },
+    });
 
   const onAdd = () => {
     setShowDrawer(true);
@@ -83,11 +85,17 @@ const Categories: NextPage = () => {
       accessor: "actions",
       Cell: ({ row }) => (
         <>
-          <EditButton onClick={() => onEdit(row)} onlyIcon className="mr-3" />
+          <EditButton
+            onClick={() => onEdit(row)}
+            onlyIcon
+            className="mr-3"
+            loading={isCreateOrEditLoading}
+          />
           <DeleteButton
             onClick={() => onDelete(row)}
             onlyIcon
             className="ml-3"
+            loading={isRemoveLoading}
           />
         </>
       ),
@@ -131,6 +139,7 @@ const Categories: NextPage = () => {
             setRecord={setRecord}
             createOrEdit={createOrEdit}
             onClose={onClose}
+            isLoading={isRemoveLoading || isCreateOrEditLoading}
           />
         </TableDrawer>
       </div>

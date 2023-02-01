@@ -29,33 +29,35 @@ const Transactions: NextPage = () => {
     if (status === "unauthenticated") Router.replace("/signin");
   }, [status]);
 
-  const { mutate: remove } = trpc.transaction.delete.useMutation({
-    onSuccess: () => {
-      void queryClient.invalidateQueries().then(() => {
-        successToast(`Record was deleted successfully!`);
-      });
-    },
-    onError: () => {
-      errorToast("Oops, something went wrong!");
-    },
-  });
+  const { mutate: remove, isLoading: isRemoveLoading } =
+    trpc.transaction.delete.useMutation({
+      onSuccess: () => {
+        void queryClient.invalidateQueries().then(() => {
+          successToast(`Record was deleted successfully!`);
+        });
+      },
+      onError: () => {
+        errorToast("Oops, something went wrong!");
+      },
+    });
 
-  const { mutate: createOrEdit } = trpc.transaction.createOrEdit.useMutation({
-    onSuccess: ({ id }) => {
-      successToast(
-        `Category was ${id !== "" ? "updated" : "added"} successfully!`
-      );
-      onClose();
-      queryClient.invalidateQueries();
-    },
-    onError: ({ message }) => {
-      errorToast(
-        JSON.parse(message)
-          .map(({ message }: { message: string }) => message)
-          .toString()
-      );
-    },
-  });
+  const { mutate: createOrEdit, isLoading: isCreateOrEditLoading } =
+    trpc.transaction.createOrEdit.useMutation({
+      onSuccess: ({ id }) => {
+        successToast(
+          `Category was ${id !== "" ? "updated" : "added"} successfully!`
+        );
+        onClose();
+        queryClient.invalidateQueries();
+      },
+      onError: ({ message }) => {
+        errorToast(
+          JSON.parse(message)
+            .map(({ message }: { message: string }) => message)
+            .toString()
+        );
+      },
+    });
 
   const onAdd = () => {
     setShowDrawer(true);
@@ -100,11 +102,17 @@ const Transactions: NextPage = () => {
       accessor: "actions",
       Cell: ({ row }) => (
         <>
-          <EditButton onClick={() => onEdit(row)} onlyIcon className="mr-3" />
+          <EditButton
+            onClick={() => onEdit(row)}
+            onlyIcon
+            className="mr-3"
+            loading={isCreateOrEditLoading}
+          />
           <DeleteButton
             onClick={() => onDelete(row)}
             onlyIcon
             className="ml-3"
+            loading={isRemoveLoading}
           />
         </>
       ),
@@ -147,6 +155,7 @@ const Transactions: NextPage = () => {
             setRecord={setRecord}
             createOrEdit={createOrEdit}
             onClose={onClose}
+            isLoading={isRemoveLoading || isCreateOrEditLoading}
           />
         </AppDrawer>
       </div>
