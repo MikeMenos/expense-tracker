@@ -54,6 +54,7 @@ const Goals = () => {
   if (isFetching)
     return (
       <div className="rounded-xl bg-secondary px-10 py-8">
+        <h2>Goals</h2>
         <Loader width={50} height={50} />
       </div>
     );
