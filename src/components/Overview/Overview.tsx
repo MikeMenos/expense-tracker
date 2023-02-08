@@ -1,37 +1,78 @@
 import { trpc } from "../../utils/trpc";
 import Loader from "../shared/Loader";
 import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  type ChartData,
+  type ChartOptions,
+} from "chart.js";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Overview = () => {
-  const { data, isFetching } = trpc.transaction.totals.useQuery();
+  const { data: total, isFetching } = trpc.transaction.totals.useQuery();
+  const { data: categories } = trpc.category.list.useQuery();
 
-  const chartData = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+  const flattedCategories =
+    categories?.categories
+      .flatMap((name) => name)
+      .map((category) => category.name) ?? [];
+
+  const labelColors = () => {
+    let labelColorArray = [];
+    for (let i = 0; i < flattedCategories?.length; i++) {
+      labelColorArray.push(
+        `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+          Math.random() * 256
+        )}, ${Math.floor(Math.random() * 256)}, 0.3)`
+      );
+    }
+
+    return labelColorArray;
+  };
+
+  const options: ChartOptions<"doughnut"> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "right" as const,
+        labels: {
+          padding: 20,
+        },
+      },
+    },
+  };
+
+  const chartData: ChartData<"doughnut"> = {
+    labels: flattedCategories,
     datasets: [
       {
         label: "# of Votes",
         data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
+        backgroundColor: labelColors(),
+        borderColor: "transparent",
         borderWidth: 1,
       },
     ],
+  };
+  const textCenter = {
+    id: "textCenter",
+    beforeDatasetsDraw(chart: any, args: any, pluginOptions: any) {
+      const { ctx } = chart;
+
+      ctx.save();
+      ctx.font = "bolder 20px sans-serif";
+      ctx.fillStyle = "white";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(
+        `Total: ${total}€`,
+        chart.getDatasetMeta(0).data[0].x,
+        chart.getDatasetMeta(0).data[0].y
+      );
+    },
   };
 
   if (isFetching)
@@ -41,12 +82,16 @@ const Overview = () => {
         <Loader width={50} height={50} />
       </div>
     );
+
   return (
     <div className="rounded-xl bg-secondary px-10 py-8">
       <h2>Overview</h2>
-      <div className="relative mt-8">
-        <Doughnut data={chartData} />
-        <h2 className="absolute left-[41%] top-[50%]">Total: {data}€</h2>
+      <div>
+        {total === 0 || undefined ? (
+          <h3 className="text-center">No Transactions exist</h3>
+        ) : (
+          <Doughnut data={chartData} options={options} plugins={[textCenter]} />
+        )}
       </div>
     </div>
   );

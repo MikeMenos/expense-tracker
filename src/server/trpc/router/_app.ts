@@ -1,6 +1,6 @@
 import { transactionsRouter } from "./transactions";
 import { router } from "../trpc";
-import { categoryRouter } from "./category";
+import { categoryRouter } from "./categories";
 import { goalsRouter } from "./goals";
 
 export const appRouter = router({

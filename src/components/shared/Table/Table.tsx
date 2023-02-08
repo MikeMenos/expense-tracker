@@ -10,6 +10,7 @@ function Table<T extends object>({
   toolbarEnabled = true,
   onAdd,
   dataSliced = false,
+  name,
 }: TableProps<T>): ReactElement {
   const {
     getTableProps,
@@ -113,11 +114,11 @@ function Table<T extends object>({
         </table>
       </div>
       {data.length === 0 && (
-        <div className="my-40 text-center text-xl font-semibold">
-          No Data Available
+        <div className="my-40 text-center">
+          <h3>No Data Available</h3>
         </div>
       )}
-      {!dataSliced && (
+      {!dataSliced && name !== "categories-table" && (
         <Pagination
           canPreviousPage={canPreviousPage}
           canNextPage={canNextPage}

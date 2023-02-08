@@ -16,11 +16,19 @@ export const categoryRouter = router({
           name,
         },
       });
+      const categories = await prisma.category.findMany();
 
       if (!id && duplicateCategoryNameExists) {
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "Category name already exists",
+        });
+      }
+
+      if (categories.length > 5) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "You can create a maximum number of 6 Categories",
         });
       }
 
