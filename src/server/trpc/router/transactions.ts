@@ -23,6 +23,18 @@ export const transactionsRouter = router({
     return { transactions };
   }),
 
+  totals: protectedProcedure.query(async ({ ctx }) => {
+    const { prisma } = ctx;
+    const transactions = await prisma.transaction.findMany();
+
+    const totals = transactions.reduce(
+      (acc, currentValue) => acc + currentValue.amount,
+      0
+    );
+
+    return totals;
+  }),
+
   delete: protectedProcedure
     .input(
       z.object({

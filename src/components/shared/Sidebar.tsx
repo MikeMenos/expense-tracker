@@ -8,10 +8,7 @@ import {
 import Button from "./buttons/Button";
 import { signOut, useSession } from "next-auth/react";
 import { BiLogOut } from "react-icons/bi";
-import {
-  TbLayoutSidebarLeftCollapse,
-  TbLayoutSidebarRightCollapse,
-} from "react-icons/tb";
+import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useGetPageTitle } from "../../hooks/useGetPageTitle";
@@ -127,12 +124,20 @@ const Sidebar: FC = ({
         </Menu>
       </SidebarWrapper>
 
-      <div className="absolute right-0 z-20">
+      <div className="absolute -right-3 z-20 mt-4">
         <Button onClick={() => collapseSidebarFunc()}>
           {!collapsed ? (
-            <TbLayoutSidebarLeftCollapse size="1.6em" />
+            <FiArrowLeftCircle
+              size="1.6em"
+              fill="white"
+              className="text-secondary"
+            />
           ) : (
-            <TbLayoutSidebarRightCollapse size="1.6em" />
+            <FiArrowRightCircle
+              size="1.6em"
+              fill="white"
+              className="text-secondary"
+            />
           )}
         </Button>
       </div>
