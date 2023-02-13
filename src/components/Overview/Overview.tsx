@@ -14,6 +14,22 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const Overview = () => {
   const { data: total, isFetching } = trpc.transaction.totals.useQuery();
   const { data: categories } = trpc.category.list.useQuery();
+  const { data: transactions } = trpc.transaction.list.useQuery();
+
+  const makeArray = () => {
+    let array3: any = [];
+    categories?.categories.forEach((category) => {
+      let totalAmount = 0;
+      transactions?.transactions.forEach((transaction) => {
+        if (transaction.category === category.name) {
+          totalAmount += transaction.amount;
+        }
+      });
+      array3.push({ category: category.name, amount: totalAmount });
+    });
+
+    return array3;
+  };
 
   const flattedCategories =
     categories?.categories
@@ -49,8 +65,10 @@ const Overview = () => {
     labels: flattedCategories,
     datasets: [
       {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
+        label: "Amount (€)",
+        data: makeArray().map(
+          (item: { category: string; amount: number }) => item.amount
+        ),
         backgroundColor: labelColors(),
         borderColor: "transparent",
         borderWidth: 1,
@@ -68,7 +86,7 @@ const Overview = () => {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(
-        `Total: ${total}€`,
+        `Total Expenses: ${total}€`,
         chart.getDatasetMeta(0).data[0].x,
         chart.getDatasetMeta(0).data[0].y
       );

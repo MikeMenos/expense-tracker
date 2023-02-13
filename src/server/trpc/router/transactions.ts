@@ -5,7 +5,7 @@ import { transactionsSchema } from "../../../zodSchemas/transactionSchema";
 export const transactionsRouter = router({
   createOrEdit: protectedProcedure
     .input(transactionsSchema)
-    .mutation(({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
       const { prisma } = ctx;
       const { receiver, id, category, amount, createdAt } = input;
 
