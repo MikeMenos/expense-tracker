@@ -4,7 +4,7 @@ export const categorySchema = object({
   name: string({
     required_error: `Category name is required`,
   })
-    .min(5)
+    .min(1)
     .max(30),
   id: string(),
 });

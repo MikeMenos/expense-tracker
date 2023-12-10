@@ -4,7 +4,7 @@ export const transactionsSchema = object({
   receiver: string({
     required_error: `Receiver is required`,
   })
-    .min(5)
+    .min(1)
     .max(30),
   category: string({
     required_error: `Category name is required`,
