@@ -2,9 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -13,33 +12,33 @@ generator client {
 
 // Necessary for Next auth
 model Account {
-  id                String  @id @default(cuid())
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
   userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String?
   session_state     String?
-  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerAccountId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User     @relation(fields: [userId], references: [id])
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
   email         String?   @unique
   password      String?
@@ -49,16 +48,8 @@ model User {
   sessions      Session[]
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
 model Transaction {
-  id        String    @id @default(cuid())
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   receiver  String
   category  String
   amount    Int
@@ -66,12 +57,12 @@ model Transaction {
 }
 
 model Category {
-  id   String @id @default(cuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String @unique
 }
 
 model Goal {
-  id       String @id @default(cuid())
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   title    String @unique
   budget   Int
   gathered Int    @default(0)

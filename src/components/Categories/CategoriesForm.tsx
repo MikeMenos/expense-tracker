@@ -25,7 +25,7 @@ const CategoriesForm: FC<PropsInterface> = ({
   isLoading,
 }) => {
   // @ts-ignore
-  const { name, id = "" } = record;
+  const { name, id = undefined } = record;
 
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name } = e.target as HTMLInputElement;
@@ -41,7 +41,7 @@ const CategoriesForm: FC<PropsInterface> = ({
     // @ts-ignore
     createOrEdit({
       name: capitalizeFirstLetter(name),
-      id,
+      id: id ?? undefined,
     });
   };
   return (

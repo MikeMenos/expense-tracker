@@ -6,5 +6,5 @@ export const categorySchema = object({
   })
     .min(1)
     .max(30),
-  id: string(),
+  id: string().optional(),
 });

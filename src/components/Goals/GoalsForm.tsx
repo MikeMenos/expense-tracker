@@ -18,7 +18,7 @@ const GoalsForm: FC<PropsInterface> = ({
   onClose,
   isLoading,
 }) => {
-  const { title, id = "", budget, gathered } = record as any;
+  const { title, id = undefined, budget, gathered } = record as any;
   const onInputChange = (e: SyntheticEvent) => {
     const { value, name, type } = e.target as HTMLInputElement;
 
@@ -38,7 +38,12 @@ const GoalsForm: FC<PropsInterface> = ({
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     // @ts-ignore
-    createOrEdit({ title: capitalizeFirstLetter(title), id, budget, gathered });
+    createOrEdit({
+      title: capitalizeFirstLetter(title),
+      id: id ?? undefined,
+      budget,
+      gathered,
+    });
   };
 
   return (
